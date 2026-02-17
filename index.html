@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="it">
-<head>
+<html lang="it"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Aste Immobiliari – Hub Personale</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&amp;family=Syne:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0F0E0C;--bg2:#161410;--bg3:#1E1B16;--gold:#C9963A;--gold2:#E8B84B;--gold-dim:rgba(201,150,58,0.15);--gold-border:rgba(201,150,58,0.25);--text:#EDE8DF;--text-dim:#8A7E6E;--text-mid:#B8A898;--green:#6A9B6E;--red:#A05A3A;--blue:#4A7A9B;--card:#1A1714;--card2:#211E18;--border:rgba(255,255,255,0.07);--radius:8px;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
@@ -308,7 +307,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
 <body>
 
 <!-- ═══════════════════════════ AUTH ═══════════════════════════ -->
-<div id="auth-screen">
+<div id="auth-screen" style="display: none;">
   <div class="auth-box">
     <div class="auth-logo">
       <div class="auth-logo-eyebrow">Accesso Riservato · Italia</div>
@@ -368,7 +367,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
 </div>
 
 <!-- ═══════════════════════════ APP ═══════════════════════════ -->
-<div id="app-screen">
+<div id="app-screen" style="display: block;">
 <div class="app" id="main-app">
 
   <nav class="sidebar">
@@ -377,22 +376,22 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       <div class="logo-title">Aste<br><em>Immobiliari</em><br>Italia</div>
     </div>
     <div class="nav-section-label">Sezioni</div>
-    <a class="nav-item active" onclick="showSection('portali',this)"><span class="nav-icon">⚖️</span> Portali & Siti</a>
+    <a class="nav-item active" onclick="showSection('portali',this)"><span class="nav-icon">⚖️</span> Portali &amp; Siti</a>
     <a class="nav-item" onclick="showSection('social',this)"><span class="nav-icon">📱</span> Canali Social</a>
-    <a class="nav-item" onclick="showSection('servizi',this)"><span class="nav-icon">💼</span> Servizi & Costi</a>
-    <a class="nav-item" id="nav-roadmap" onclick="showSection('roadmap',this)"><span class="nav-icon">🎙️</span> Roadmap & Podcast</a>
-    <a class="nav-item" onclick="showSection('collabora',this)"><span class="nav-icon">🤝</span> Collabora & Segnala</a>
+    <a class="nav-item" onclick="showSection('servizi',this)"><span class="nav-icon">💼</span> Servizi &amp; Costi</a>
+    <a class="nav-item" id="nav-roadmap" onclick="showSection('roadmap',this)" style="display: none;"><span class="nav-icon">🎙️</span> Roadmap &amp; Podcast</a>
+    <a class="nav-item" onclick="showSection('collabora',this)"><span class="nav-icon">🤝</span> Collabora &amp; Segnala</a>
     <div class="nav-section-label" style="margin-top:8px;">Link Rapidi</div>
     <a class="nav-item" href="https://pvp.giustizia.it" target="_blank"><span class="nav-icon">🔗</span> PVP Giustizia</a>
     <a class="nav-item" href="https://www.ivg.it" target="_blank"><span class="nav-icon">🔗</span> IVG.it</a>
     <a class="nav-item" href="https://www.immobiliare.it/aste/" target="_blank"><span class="nav-icon">🔗</span> Immobiliare.it</a>
-    <div id="admin-nav-wrap" style="display:none;">
+    <div id="admin-nav-wrap" style="display: none;">
       <div class="nav-section-label" style="margin-top:8px;">Amministrazione</div>
       <a class="nav-item" onclick="showSection('admin',this)" style="color:#E8785A;"><span class="nav-icon">🛡️</span> Pannello Admin</a>
     </div>
     <div class="user-pill">
-      <div class="u-avatar" id="u-av">?</div>
-      <div class="u-info"><div class="u-name" id="u-nm">Utente</div><div class="u-role" id="u-rl">Membro</div></div>
+      <div class="u-avatar" id="u-av">V</div>
+      <div class="u-info"><div class="u-name" id="u-nm">Vittorio</div><div class="u-role" id="u-rl">👤 Membro</div></div>
       <button class="logout-btn" onclick="doLogout()" title="Esci">↩</button>
     </div>
     <div class="sidebar-footer">Hub Aste Immobiliari Italia</div>
@@ -400,7 +399,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
 
   <div class="main">
     <div class="topbar">
-      <div class="topbar-title">Hub Aste Immobiliari · <span id="topbar-name">Portali & Siti Ufficiali</span></div>
+      <div class="topbar-title">Hub Aste Immobiliari · <span id="topbar-name">Portali &amp; Siti Ufficiali</span></div>
       <div class="topbar-actions"><button class="btn btn-ghost" onclick="exportNotes()">⬇ Esporta Note</button></div>
     </div>
 
@@ -408,10 +407,10 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
     <div id="section-portali" class="section active">
       <div class="section-header">
         <div class="section-eyebrow">Sezione 1 · Risorse Online</div>
-        <div class="section-title">Portali <em>Ufficiali</em> & Siti Aste</div>
+        <div class="section-title">Portali <em>Ufficiali</em> &amp; Siti Aste</div>
         <div class="section-desc">Tutti i siti per trovare immobili in asta in Italia. Filtra per tipo o provincia, apri i link e aggiungi note personali su ogni portale.</div>
       </div>
-      <div id="admin-portal-banner" class="admin-banner" style="display:none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin attiva:</strong> puoi aggiungere ed eliminare portali. Le modifiche sono visibili a tutti gli utenti.</div></div>
+      <div id="admin-portal-banner" class="admin-banner" style="display: none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin attiva:</strong> puoi aggiungere ed eliminare portali. Le modifiche sono visibili a tutti gli utenti.</div></div>
       <div class="anchor-nav">
         <button class="anchor-btn" onclick="scrollTo('ufficiali')">⚖️ Ufficiali</button>
         <button class="anchor-btn" onclick="scrollTo('portali-gen')">🏠 Generalisti</button>
@@ -420,8 +419,8 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       <div class="filter-bar">
         <span class="filter-label">Tipo:</span>
         <div style="display:flex;gap:6px;flex-wrap:wrap;" id="type-filters">
-          <span class="filter-chip active" onclick="filterP('all',this)">Tutti</span>
-          <span class="filter-chip" onclick="filterP('ufficiale',this)">⚖️ Ufficiali</span>
+          <span class="filter-chip" onclick="filterP('all',this)">Tutti</span>
+          <span class="filter-chip active" onclick="filterP('ufficiale',this)">⚖️ Ufficiali</span>
           <span class="filter-chip" onclick="filterP('portale',this)">🏠 Portali</span>
           <span class="filter-chip" onclick="filterP('banca',this)">🏦 Bancari</span>
         </div>
@@ -437,12 +436,177 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         </div>
       </div>
       <div id="ufficiali"><div class="sub-section-label">⚖️ Portali Giudiziari Ufficiali</div></div>
-      <div class="grid-auto" id="grid-ufficiali"></div>
+      <div class="grid-auto" id="grid-ufficiali"><div class="portal-card" data-type="ufficiale" data-prov="nazionale" data-pid="pvp">
+      <div class="portal-top"><span class="portal-icon">🏛️</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">PVP – Portale Vendite Pubbliche</div>
+      <div class="portal-desc">Portale ufficiale del Ministero della Giustizia. Obbligatorio per tutte le vendite giudiziarie in Italia.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Obbligatorio</span><span class="meta-tag">Gratuito</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://pvp.giustizia.it" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'pvp','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="ufficiale" data-prov="bologna" data-pid="ivg">
+      <div class="portal-top"><span class="portal-icon">⚖️</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">IVG – Istituto Vendite Giudiziarie</div>
+      <div class="portal-desc">Rete degli IVG territoriali. IVG Bologna tra i più attivi, con aste telematiche per l'Emilia-Romagna.</div>
+      <div class="portal-meta"><span class="meta-tag">📍 Bologna</span><span class="meta-tag">Telematiche</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.ivg.it" target="_blank">↗ Apri Sito</a>
+        <a class="portal-link" href="https://www.ivgbologna.it" target="_blank" style="background:transparent;border-color:var(--border);color:var(--text-mid);">↗ IVG Bologna</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'ivg','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="ufficiale" data-prov="nazionale" data-pid="fallco">
+      <div class="portal-top"><span class="portal-icon">📋</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">Fallco Aste</div>
+      <div class="portal-desc">Piattaforma per vendite da procedure concorsuali e fallimentari. Usata dai curatori.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Fallimenti</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.fallcoaste.it" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'fallco','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="ufficiale" data-prov="nazionale" data-pid="p1771346563092">
+      <div class="portal-top"><span class="portal-icon">⚖️</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">Aste Ferrara</div>
+      <div class="portal-desc"></div>
+      <div class="portal-meta"><span class="meta-tag">📍 nazionale</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.ferraraaste.it/aste-mobiliari/" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'p1771346563092','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="ufficiale" data-prov="nazionale" data-pid="p1771346634720">
+      <div class="portal-top"><span class="portal-icon">⚖️</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">ASTE x Regioni</div>
+      <div class="portal-desc">Sito dove puoi filtrare le tue aste per regione</div>
+      <div class="portal-meta"><span class="meta-tag">📍 nazionale</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.astegiudiziarie.it/" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'p1771346634720','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="ufficiale" data-prov="nazionale" data-pid="p1771346751307">
+      <div class="portal-top"><span class="portal-icon">⚖️</span><span class="portal-badge badge-ufficiale">Ufficiale</span></div>
+      <div class="portal-name">Aste Telematiche</div>
+      <div class="portal-desc">Uno dei siti ufficiali dove puoi partecipare alle aste online</div>
+      <div class="portal-meta"><span class="meta-tag">📍 nazionale</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.astetelematiche.it/" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'p1771346751307','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div></div>
       <div id="portali-gen" style="margin-top:28px;"><div class="sub-section-label">🏠 Portali Immobiliari Generalisti</div></div>
-      <div class="grid-auto" id="grid-portale"></div>
-      <div id="bancari" style="margin-top:28px;"><div class="sub-section-label">🏦 Portali Bancari & REO</div></div>
-      <div class="grid-auto" id="grid-banca"></div>
-      <div id="add-portal-wrap" style="margin-top:28px;display:none;">
+      <div class="grid-auto" id="grid-portale"><div class="portal-card" data-type="portale" data-prov="nazionale" data-pid="imm">
+      <div class="portal-top"><span class="portal-icon">🏡</span><span class="portal-badge badge-portale">Portale</span></div>
+      <div class="portal-name">Immobiliare.it – Aste</div>
+      <div class="portal-desc">Il portale immobiliare più visitato in Italia. Sezione aste con filtro per provincia, tipologia e prezzo.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Filtro Provincia</span><span class="meta-tag">Alta audience</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.immobiliare.it/aste/" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'imm','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="portale" data-prov="nazionale" data-pid="idealista">
+      <div class="portal-top"><span class="portal-icon">🔑</span><span class="portal-badge badge-portale">Portale</span></div>
+      <div class="portal-name">Idealista.it – Aste</div>
+      <div class="portal-desc">Forte presenza in Italia. Sezione aste con filtro per comune. Molto usato a Milano e Roma.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Filtro Comune</span><span class="meta-tag">Milano/Roma</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.idealista.it/aste-immobiliari/" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'idealista','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="portale" data-prov="nazionale" data-pid="casait">
+      <div class="portal-top"><span class="portal-icon">🏘️</span><span class="portal-badge badge-portale">Portale</span></div>
+      <div class="portal-name">Casa.it – Aste</div>
+      <div class="portal-desc">Portale immobiliare con sezione aste. Ricerca per regione e provincia.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Filtro Regione</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.casa.it" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'casait','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="portal-card" data-type="portale" data-prov="nazionale" data-pid="gazzetta">
+      <div class="portal-top"><span class="portal-icon">🔍</span><span class="portal-badge badge-portale">Portale</span></div>
+      <div class="portal-name">Gazzetta Aste</div>
+      <div class="portal-desc">Portale specializzato in aste giudiziarie e volontarie. Alert email su nuove aste per zona.</div>
+      <div class="portal-meta"><span class="meta-tag">🇮🇹 Nazionale</span><span class="meta-tag">Specializzato</span><span class="meta-tag">Alert Email</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.gazzettaaste.it" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'gazzetta','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div></div>
+      <div id="bancari" style="margin-top:28px;"><div class="sub-section-label">🏦 Portali Bancari &amp; REO</div></div>
+      <div class="grid-auto" id="grid-banca"><div class="portal-card" data-type="banca" data-prov="nazionale" data-pid="p1771341358526">
+      <div class="portal-top"><span class="portal-icon">🏦</span><span class="portal-badge badge-banca">Bancario</span></div>
+      <div class="portal-name">Mutui Online</div>
+      <div class="portal-desc">Trova Gratis il mutuo più conveniente !</div>
+      <div class="portal-meta"><span class="meta-tag">📍 nazionale</span></div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.mutuionline.it/landing-mutuo-casa/?textCodiceReferrer=AdWords_Brand&amp;matchtype=e&amp;keyword=mutuionline&amp;utm_source=google&amp;utm_medium=cpc&amp;utm_campaign=00.01.mol_s_dt-mob_brand_preco_cc-aperto&amp;utm_id=347129460&amp;utm_content=A1._Brand_Exact_-_Mob&amp;gad_source=1&amp;gad_campaignid=347129460&amp;gbraid=0AAAAAD_kCbnTBryRyFuJ0BTaa_MHAhsqz&amp;gclid=CjwKCAiAwNDMBhBfEiwAd7ti1OWqElTERRrUSXJkIzNfNQT5kUwFJcnhejdfGgX4gdybLyP1hmjivhoCF88QAvD_BwE" target="_blank">↗ Apri Sito</a>
+        
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Aggiungi note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'p1771341358526','p')">Salva nota</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div></div>
+      <div id="add-portal-wrap" style="margin-top: 28px; display: none;">
         <button class="btn" onclick="toggleForm('portal-form')">+ Aggiungi Portale</button>
       </div>
       <div id="portal-form" class="add-form">
@@ -458,7 +622,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -470,11 +634,11 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
     <!-- ═══ SOCIAL ═══ -->
     <div id="section-social" class="section">
       <div class="section-header">
-        <div class="section-eyebrow">Sezione 2 · Community & Contenuti</div>
+        <div class="section-eyebrow">Sezione 2 · Community &amp; Contenuti</div>
         <div class="section-title">Canali <em>Social</em> sulle Aste</div>
         <div class="section-desc">Profili, pagine e gruppi da seguire per restare aggiornato. Aggiungi note personali e i tuoi canali preferiti.</div>
       </div>
-      <div id="admin-social-banner" class="admin-banner" style="display:none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin:</strong> puoi aggiungere e rimuovere canali social per tutti gli utenti.</div></div>
+      <div id="admin-social-banner" class="admin-banner" style="display: none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin:</strong> puoi aggiungere e rimuovere canali social per tutti gli utenti.</div></div>
       <div class="tip"><span>💡</span>Clicca <strong>"✏️ Note"</strong> per annotare appunti personali su ogni canale.</div>
       <div class="filter-bar">
         <span class="filter-label">Piattaforma:</span>
@@ -487,8 +651,98 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
           <span class="filter-chip" onclick="filterS('linkedin',this)">💼 LinkedIn</span>
         </div>
       </div>
-      <div class="grid-auto" id="social-grid"></div>
-      <div id="add-social-wrap" style="margin-top:22px;display:none;"><button class="btn" onclick="toggleForm('social-form')">+ Aggiungi Canale</button></div>
+      <div class="grid-auto" id="social-grid"><div class="social-card" data-platform="instagram">
+      <div class="social-header">
+        <div class="social-platform-icon s-ig">📸</div>
+        <div><div class="social-name">Aste Immobiliari Italia</div><div class="social-handle">@asteimmobiliariitalia</div></div>
+      </div>
+      <div class="social-desc">Uno dei profili Instagram più seguiti. Pubblica guide, consigli e segnalazioni di aste.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.instagram.com/asteimmobiliariitalia" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note...">quindiiiiiiiiii</textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'ig1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="social-card" data-platform="youtube">
+      <div class="social-header">
+        <div class="social-platform-icon s-yt">▶️</div>
+        <div><div class="social-name">Aste Immobiliari – YouTube</div><div class="social-handle">Vari creator specializzati</div></div>
+      </div>
+      <div class="social-desc">Cerca "aste immobiliari Italia" per video-guide, analisi di casi reali e interviste a professionisti.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.youtube.com/results?search_query=aste+immobiliari+italia" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note...">cos?é?</textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'yt1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="social-card" data-platform="facebook">
+      <div class="social-header">
+        <div class="social-platform-icon s-fb">👥</div>
+        <div><div class="social-name">Gruppi FB – Aste Immobili</div><div class="social-handle">Gruppi pubblici e privati</div></div>
+      </div>
+      <div class="social-desc">Cerca "aste immobiliari [tua città]" per community attive con segnalazioni in tempo reale.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.facebook.com/groups/search/results/?q=aste%20immobiliari" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'fb1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="social-card" data-platform="tiktok">
+      <div class="social-header">
+        <div class="social-platform-icon s-tt">🎵</div>
+        <div><div class="social-name">TikTok – #AsteImmobiliari</div><div class="social-handle">#asteimmobiliari #casaallasta</div></div>
+      </div>
+      <div class="social-desc">Contenuti brevi e virali. Hashtag #asteimmobiliari, #casaallasta, #investimentoimmobiliare.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.tiktok.com/search?q=aste+immobiliari" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'tt1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="social-card" data-platform="linkedin">
+      <div class="social-header">
+        <div class="social-platform-icon s-li">💼</div>
+        <div><div class="social-name">LinkedIn – NPL &amp; Real Estate</div><div class="social-handle">Professionisti del settore</div></div>
+      </div>
+      <div class="social-desc">Segui professionisti NPL, servicer e avvocati specializzati in esecuzioni immobiliari.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.linkedin.com/search/results/all/?keywords=aste+immobiliari+italia" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'li1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div><div class="social-card" data-platform="instagram">
+      <div class="social-header">
+        <div class="social-platform-icon s-ig">🎙️</div>
+        <div><div class="social-name">Podcast &amp; Newsletter Settore</div><div class="social-handle">Risorse audio e scritte</div></div>
+      </div>
+      <div class="social-desc">Podcast italiani su investimenti immobiliari e newsletter come NPL Review per aggiornamenti settimanali.</div>
+      <div class="portal-actions">
+        <a class="portal-link" href="https://www.spotify.com/search/aste%20immobiliari" target="_blank">↗ Vai al Canale</a>
+        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        
+      </div>
+      <div class="inline-note">
+        <textarea placeholder="Le tue note..."></textarea>
+        <button class="note-save-btn" onclick="saveNote(this,'pod1','s')">Salva</button>
+        <div class="note-saved-text">✓ Salvata</div>
+      </div></div></div>
+      <div id="add-social-wrap" style="margin-top: 22px; display: none;"><button class="btn" onclick="toggleForm('social-form')">+ Aggiungi Canale</button></div>
       <div id="social-form" class="add-form">
         <div class="form-title">➕ Aggiungi Canale Social</div>
         <div class="fg">
@@ -502,7 +756,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -515,13 +769,13 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
     <div id="section-servizi" class="section">
       <div class="section-header">
         <div class="section-eyebrow">Sezione 3 · Servizi Professionali</div>
-        <div class="section-title">Servizi <em>Professionali</em> & Costi</div>
+        <div class="section-title">Servizi <em>Professionali</em> &amp; Costi</div>
         <div class="section-desc">Agenzie, studi legali e professionisti del settore. Consulta le schede e aggiungi la tua esperienza nei commenti sotto ogni servizio.</div>
       </div>
 
       <!-- Admin controls -->
-      <div id="admin-srv-banner" class="admin-banner" style="display:none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin:</strong> puoi aggiungere, modificare ed eliminare le schede servizi. Le descrizioni sono visibili a tutti gli utenti.</div></div>
-      <div id="admin-srv-add-wrap" style="display:none;margin-bottom:20px;">
+      <div id="admin-srv-banner" class="admin-banner" style="display: none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin:</strong> puoi aggiungere, modificare ed eliminare le schede servizi. Le descrizioni sono visibili a tutti gli utenti.</div></div>
+      <div id="admin-srv-add-wrap" style="display: none; margin-bottom: 20px;">
         <button class="btn" onclick="toggleForm('srv-add-form')">+ Aggiungi Servizio</button>
       </div>
       <div id="srv-add-form" class="add-form">
@@ -540,7 +794,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       <!-- Edit form (hidden by default) -->
       <div id="srv-edit-form" class="add-form">
         <div class="form-title">✏️ Modifica Servizio</div>
-        <input type="hidden" id="sv-edit-id">
+        <input type="hidden" id="sv-edit-id" value="srv1771345696566">
         <div class="fg">
           <div class="fgi"><label class="fgi-l">Nome / Studio</label><input class="fi" id="sv-edit-nm"></div>
           <div class="fgi"><label class="fgi-l">Tipo</label><select class="fs" id="sv-edit-tp"><option>🏢 Agenzia Specializzata Aste</option><option>👨‍⚖️ Studio Legale</option><option>🔍 Perito / Tecnico</option><option>💰 Consulente Finanziario</option><option>📋 Curatore Fallimentare</option><option>🏦 Mediatore Creditizio</option><option>📦 Altro</option></select></div>
@@ -552,13 +806,76 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="form-actions"><button class="btn" onclick="saveEditSrv()">Salva Modifiche</button><button class="btn btn-ghost" onclick="toggleForm('srv-edit-form')">Annulla</button></div>
       </div>
 
-      <div class="srv-cards-grid" id="srv-cards-container">
-        <div class="empty-state" id="srv-empty-state"><div class="empty-icon">💼</div><div class="empty-title">Nessun servizio ancora</div><div>L'amministratore non ha ancora aggiunto servizi.</div></div>
+      <div class="srv-cards-grid" id="srv-cards-container"><div class="srv-pub-card">
+      <div class="srv-pub-card-header">
+        <div class="srv-pub-name">AGL aste immobiliari</div>
+        <span class="srv-pub-type">🏢 Agenzia Specializzata Aste</span>
       </div>
+      <div class="srv-pub-cost">€ 365</div>
+      <div class="srv-pub-mode" style="color:var(--text-dim);font-size:11px;">A successo</div>
+      <div class="srv-pub-desc-label">Descrizione</div>
+      <div class="srv-pub-desc">- COSTO: UNA TANTUM di 300,00 euro + iva e 5000,00 euro + iva in caso di vincita asta fino a 80.000 euro; oltre viene applicato il 6%+iva
+
+- MAIL SETTIMANALE : Tutti i Mercoledì riceverai le proposte scelte;
+- APPLICAZIONE dove puoi consultare gli immobili disponibili a qualsiasi ora del giorno, tutti i giorni con le credenziali 
+Premium incluse nel servizio 
+- ASSISTENZA PER I SOPRALLUOGHI : Visita tutti gli immobili che vuoi, finchè non trovi quello che fa al caso tuo!;
+- CONTROLLI TECNICO/LEGALI : Acquisto in totale sicurezza
+ - ASSICURAZIONE :per la tua casa, il tuo negozio o il tuo terreno durante il periodo dei 120 gg in cui non entri in possesso effettivamente 
+- CONSULENZA MUTUO FINO AL 100% : parli con un consulente per avere un mutuo, un finanziamento o un prestito. 
+- PRE–ASTA. ASTA. POST–ASTA: seguono la tua partecipazione in totale sicurezza, sin dall’inizio alla fine finchè non avrai in mano le chiavi della tua nuova proprietà</div>
+      <a class="srv-contact" href="https://www.aglasteimmobiliari.it/" target="_blank">↗ Contatta</a>
+      
+      <div class="srv-comments-section">
+        <div class="srv-comments-label">💬 Commenti degli Utenti (1)</div>
+        <div class="comment-list" id="clist-srv1771345696566">
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-author">💬 Amministratore</span>
+          <span style="display:flex;align-items:center;gap:6px;">
+            <span>17/02/2026</span>
+            
+          </span>
+        </div>
+        Promette tempi brevi di consulenza;
+      </div></div>
+        <div class="comment-form">
+          <textarea class="comment-textarea" id="ctxt-srv1771345696566" placeholder="Condividi la tua esperienza con questo servizio..."></textarea>
+          <button class="comment-submit" onclick="addComment('srv1771345696566')">Pubblica commento</button>
+        </div>
+      </div></div><div class="srv-pub-card">
+      <div class="srv-pub-card-header">
+        <div class="srv-pub-name">Simplex Domus</div>
+        <span class="srv-pub-type">🏢 Agenzia Specializzata Aste</span>
+      </div>
+      <div class="srv-pub-cost">€ 305</div>
+      <div class="srv-pub-mode" style="color:var(--text-dim);font-size:11px;">A successo</div>
+      <div class="srv-pub-desc-label">Descrizione</div>
+      <div class="srv-pub-desc">- COSTO: UNA TANTUM di 250,00 euro + iva e 5000,00 euro + iva in caso di vincita asta;  MAIL SETTIMANALE : Tutti i Lunedì riceverai le proposte scelte; - APPLICAZIONE dove puoi consultare gli immobili disponibili a qualsiasi ora del giorno, tutti i giorni con le credenziali Premium incluse nel servizio - ASSISTENZA PER I SOPRALLUOGHI: Visita tutti gli immobili che vuoi, finchè non trovi quello che fa al caso tuo; - CONTROLLI TECNICO/LEGALI : ti viene assegnato un legale che effettuerà la consulenza dell'immobile dopo averlo visitato - - CONSULENZA MUTUO FINO AL 100% : parli con un consulente per avere un mutuo, un finanziamento o un prestito. - PRE–ASTA. ASTA. POST–ASTA: seguono la tua partecipazione in totale sicurezza, sin dall’inizio alla fine finchè non avrai in mano le chiavi della tua nuova proprietà.</div>
+      <a class="srv-contact" href="https://www.simplexdomus.it/" target="_blank">↗ Contatta</a>
+      
+      <div class="srv-comments-section">
+        <div class="srv-comments-label">💬 Commenti degli Utenti (1)</div>
+        <div class="comment-list" id="clist-srv1771348866503">
+      <div class="comment-item">
+        <div class="comment-meta">
+          <span class="comment-author">💬 Amministratore</span>
+          <span style="display:flex;align-items:center;gap:6px;">
+            <span>17/02/2026</span>
+            
+          </span>
+        </div>
+        Attualmente stoi riscontrando ritardi nella consulenza in quanto dicono di concentrarsi primariamente sulle aste che scadono nel breve periodo.
+      </div></div>
+        <div class="comment-form">
+          <textarea class="comment-textarea" id="ctxt-srv1771348866503" placeholder="Condividi la tua esperienza con questo servizio..."></textarea>
+          <button class="comment-submit" onclick="addComment('srv1771348866503')">Pubblica commento</button>
+        </div>
+      </div></div></div>
 
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -571,7 +888,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
     <div id="section-roadmap" class="section">
       <div class="section-header">
         <div class="section-eyebrow">Sezione 4 · Piano d'Azione</div>
-        <div class="section-title">Roadmap & <em>Podcast Instagram</em></div>
+        <div class="section-title">Roadmap &amp; <em>Podcast Instagram</em></div>
         <div class="section-desc">Piano su 12 mesi che integra la strategia aste con il lancio del podcast su Instagram. Clicca ogni fase per espandere e spuntare i task completati.</div>
       </div>
       <div class="tip"><span>🎙️</span>I task con il tag <strong style="color:#fd6d6d;">PODCAST</strong> sono specifici per la tua strategia Instagram.</div>
@@ -579,10 +896,10 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="tl-item"><div class="tl-dot now">1</div>
           <div class="tl-card exp" onclick="toggleTl(this)">
             <div class="tl-month">Mese 1–2 · Fondamenta</div>
-            <div class="tl-title">Setup & Prima Esplorazione <span class="tl-chevron">▾</span></div>
+            <div class="tl-title">Setup &amp; Prima Esplorazione <span class="tl-chevron">▾</span></div>
             <div class="tl-sub">Costruire la base: strumenti, conoscenze e primo contenuto.</div>
             <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Registrarsi su PVP Giustizia e IVG Bologna</div>
+              <div class="tl-task chkd" onclick="chk(event,this)"><div class="tl-chk">✓</div>Registrarsi su PVP Giustizia e IVG Bologna</div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Esplorare le prime 10 schede d'asta e studiarne la struttura</div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Seguire almeno 5 canali social/YouTube specializzati</div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Contattare 2–3 studi legali per un preventivo</div>
@@ -595,7 +912,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="tl-item"><div class="tl-dot">2</div>
           <div class="tl-card" onclick="toggleTl(this)">
             <div class="tl-month">Mese 3–4 · Prima Partecipazione</div>
-            <div class="tl-title">Prima Asta & Crescita Contenuti <span class="tl-chevron">▾</span></div>
+            <div class="tl-title">Prima Asta &amp; Crescita Contenuti <span class="tl-chevron">▾</span></div>
             <div class="tl-sub">Partecipare alla prima asta e costruire la community.</div>
             <div class="tl-body"><div class="tl-tasks">
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Selezionare un immobile e analizzare perizia e documentazione</div>
@@ -603,7 +920,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Preparare il piano finanziario per la prima offerta reale</div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Scegliere e formalizzare accordo con il legale di fiducia</div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Pubblicare 2 episodi/settimana: consigli pratici + case study <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Attivare Instagram Live mensile: Q&A sulle aste <span class="pod-tag">🎙️ PODCAST</span></span></div>
+              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Attivare Instagram Live mensile: Q&amp;A sulle aste <span class="pod-tag">🎙️ PODCAST</span></span></div>
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Raggiungere 500 follower e raccogliere feedback <span class="pod-tag">🎙️ PODCAST</span></span></div>
             </div></div>
           </div>
@@ -611,7 +928,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="tl-item"><div class="tl-dot">3</div>
           <div class="tl-card" onclick="toggleTl(this)">
             <div class="tl-month">Mese 5–7 · Accelerazione</div>
-            <div class="tl-title">Prima Aggiudicazione & Autorità nel Settore <span class="tl-chevron">▾</span></div>
+            <div class="tl-title">Prima Aggiudicazione &amp; Autorità nel Settore <span class="tl-chevron">▾</span></div>
             <div class="tl-sub">Tentare la prima vera offerta e diventare un riferimento.</div>
             <div class="tl-body"><div class="tl-tasks">
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Presentare la prima offerta su un immobile selezionato</div>
@@ -626,7 +943,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="tl-item"><div class="tl-dot">4</div>
           <div class="tl-card" onclick="toggleTl(this)">
             <div class="tl-month">Mese 8–10 · Consolidamento</div>
-            <div class="tl-title">Ottimizzazione & Monetizzazione Contenuti <span class="tl-chevron">▾</span></div>
+            <div class="tl-title">Ottimizzazione &amp; Monetizzazione Contenuti <span class="tl-chevron">▾</span></div>
             <div class="tl-sub">Ottimizzare il processo d'acquisto e monetizzare il podcast.</div>
             <div class="tl-body"><div class="tl-tasks">
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Partecipare ad almeno 3 aste con offerta presentata</div>
@@ -641,7 +958,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
         <div class="tl-item"><div class="tl-dot">5</div>
           <div class="tl-card" onclick="toggleTl(this)">
             <div class="tl-month">Mese 11–12 · Ecosistema</div>
-            <div class="tl-title">Scalabilità & Posizionamento da Esperto <span class="tl-chevron">▾</span></div>
+            <div class="tl-title">Scalabilità &amp; Posizionamento da Esperto <span class="tl-chevron">▾</span></div>
             <div class="tl-sub">Diventare punto di riferimento nel settore aste in Italia.</div>
             <div class="tl-body"><div class="tl-tasks">
               <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Definire strategia 2027: scale su più province</div>
@@ -656,7 +973,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -669,7 +986,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
     <div id="section-collabora" class="section">
       <div class="section-header">
         <div class="section-eyebrow">Sezione 5 · Partecipa</div>
-        <div class="section-title">Collabora & <em>Segnala</em></div>
+        <div class="section-title">Collabora &amp; <em>Segnala</em></div>
         <div class="section-desc">Vuoi collaborare al progetto, proporre una partnership, segnalare un professionista o condividere un'idea? Scrivici direttamente.</div>
       </div>
       <div class="collab-grid">
@@ -732,7 +1049,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -750,9 +1067,9 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <div class="admin-banner"><span style="font-size:18px;">🛡️</span><div><strong>Accesso Amministratore.</strong> Tutte le modifiche ai contenuti sono visibili a tutti gli utenti dell'hub.</div></div>
       <div class="grid-3" style="margin-bottom:30px;">
-        <div class="cost-box"><div class="cost-box-label">Utenti Registrati</div><div class="cost-box-val" id="adm-ucnt">0</div><div class="cost-box-sub">Totale account</div></div>
-        <div class="cost-box"><div class="cost-box-label">Portali nel Hub</div><div class="cost-box-val" id="adm-pcnt">0</div><div class="cost-box-sub">Totale portali</div></div>
-        <div class="cost-box"><div class="cost-box-label">Canali Social</div><div class="cost-box-val" id="adm-scnt">0</div><div class="cost-box-sub">Totale canali</div></div>
+        <div class="cost-box"><div class="cost-box-label">Utenti Registrati</div><div class="cost-box-val" id="adm-ucnt">2</div><div class="cost-box-sub">Totale account</div></div>
+        <div class="cost-box"><div class="cost-box-label">Portali nel Hub</div><div class="cost-box-val" id="adm-pcnt">11</div><div class="cost-box-sub">Totale portali</div></div>
+        <div class="cost-box"><div class="cost-box-label">Canali Social</div><div class="cost-box-val" id="adm-scnt">6</div><div class="cost-box-sub">Totale canali</div></div>
       </div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:16px;">Gestione <em style="color:var(--gold)">Utenti</em></div>
       <div class="tip"><span>👁️</span>Clicca <strong style="color:var(--gold)">Dettagli</strong> su ogni utente per vedere tutti i dati completi inclusa la password.</div>
@@ -771,7 +1088,28 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       <div style="overflow-x:auto;">
         <table class="stbl" id="users-tbl">
           <thead><tr><th>Nome</th><th>Email</th><th>Telefono</th><th>Ruolo</th><th>Registrato</th><th>Azioni</th></tr></thead>
-          <tbody id="users-tbody"></tbody>
+          <tbody id="users-tbody"><tr>
+      <td><strong>Amministratore</strong></td>
+      <td style="font-size:12px">admin@astehub.it</td>
+      <td style="font-size:12px;color:var(--text-mid)">+39 000 0000000</td>
+      <td><span class="role-badge role-admin">🛡️ Admin</span></td>
+      <td style="font-size:12px;color:var(--text-dim)">17/02/2026</td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="edit-btn" onclick="showUserDetails('root')">👁 Dettagli</button>
+        <span style="font-size:11px;color:var(--text-dim);">Root</span>
+      </td></tr><tr>
+      <td><strong>Vittorio</strong></td>
+      <td style="font-size:12px">vtrius@proton.me</td>
+      <td style="font-size:12px;color:var(--text-mid)">3204877661</td>
+      <td><span class="role-badge role-user">👤 Utente</span></td>
+      <td style="font-size:12px;color:var(--text-dim)">17/02/2026</td>
+      <td style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button class="edit-btn" onclick="showUserDetails('u1771341474607')">👁 Dettagli</button>
+        
+          <button class="edit-btn" onclick="toggleRole('u1771341474607')">→ Admin</button>
+          <button class="del-btn" onclick="delUser('u1771341474607')">✕</button>
+        
+      </td></tr></tbody>
         </table>
       </div>
       <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin:32px 0 14px;">Gestione <em style="color:var(--gold)">Contenuti</em></div>
@@ -783,7 +1121,7 @@ body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-w
       </div>
       <!-- Social Footer -->
       <div class="section-social-footer">
-        <div class="social-footer-label">Seguici & Contattaci</div>
+        <div class="social-footer-label">Seguici &amp; Contattaci</div>
         <div class="social-footer-links">
           <a class="sf-link ig" href="https://www.instagram.com/hobby_imprenditore/" target="_blank"><span class="sf-icon">📸</span><span class="sf-label"><span class="sf-name">Instagram</span><span class="sf-handle">@hobby_imprenditore</span></span></a>
           <a class="sf-link yt" href="https://www.youtube.com/channel/UC8DqCQgGF5dCuZ_52_llxyw?sub_confirmation=1" target="_blank"><span class="sf-icon">▶️</span><span class="sf-label"><span class="sf-name">YouTube</span><span class="sf-handle">Hobby Imprenditore</span></span></a>
@@ -1360,5 +1698,6 @@ window.addEventListener('DOMContentLoaded',()=>{
   }
 });
 </script>
-</body>
-</html>
+
+
+</body></html>
