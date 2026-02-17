@@ -6,993 +6,1533 @@
 <title>Aste Immobiliari – Hub Personale</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Syne:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#0F0E0C;--bg2:#161410;--bg3:#1E1B16;--gold:#C9963A;--gold2:#E8B84B;--gold-dim:rgba(201,150,58,0.15);--gold-border:rgba(201,150,58,0.25);--text:#EDE8DF;--text-dim:#8A7E6E;--text-mid:#B8A898;--green:#6A9B6E;--red:#A05A3A;--blue:#4A7A9B;--card:#1A1714;--card2:#211E18;--border:rgba(255,255,255,0.07);--radius:8px;}
-*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+:root {
+  --bg: #0F0E0C;
+  --bg2: #161410;
+  --bg3: #1E1B16;
+  --gold: #C9963A;
+  --gold2: #E8B84B;
+  --gold-dim: rgba(201,150,58,0.15);
+  --gold-border: rgba(201,150,58,0.25);
+  --text: #EDE8DF;
+  --text-dim: #8A7E6E;
+  --text-mid: #B8A898;
+  --green: #6A9B6E;
+  --red: #A05A3A;
+  --blue: #4A7A9B;
+  --card: #1A1714;
+  --card2: #211E18;
+  --border: rgba(255,255,255,0.07);
+  --radius: 8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
-::-webkit-scrollbar{width:4px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:2px;}
 
-/* ── AUTH ── */
-#auth-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:var(--bg);background-image:radial-gradient(ellipse at 20% 50%,rgba(201,150,58,.07) 0%,transparent 60%),radial-gradient(ellipse at 80% 20%,rgba(201,150,58,.04) 0%,transparent 50%);animation:fadeIn .6s ease both;}
-.auth-box{width:100%;max-width:430px;padding:40px;background:var(--bg2);border:1px solid var(--gold-border);border-radius:12px;box-shadow:0 24px 64px rgba(0,0,0,.6);}
-.auth-logo{text-align:center;margin-bottom:28px;}
-.auth-logo-eyebrow{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
-.auth-logo-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:400;line-height:1.15;}
-.auth-logo-title em{font-style:italic;color:var(--gold);}
-.auth-logo-sub{font-size:11.5px;color:var(--text-dim);margin-top:8px;}
-.auth-tabs{display:flex;gap:3px;background:var(--bg3);border-radius:6px;padding:3px;margin-bottom:26px;}
-.auth-tab{flex:1;padding:9px;text-align:center;font-size:12.5px;font-weight:500;cursor:pointer;border-radius:4px;transition:all .2s;color:var(--text-dim);font-family:'Syne',sans-serif;}
-.auth-tab.active{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-border);}
-.auth-panel{display:none;animation:fadeUp .3s ease both;}
-.auth-panel.active{display:block;}
-.f-group{margin-bottom:14px;}
-.f-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:600;display:block;margin-bottom:7px;}
-.f-input{width:100%;background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 14px;border-radius:6px;font-size:13px;font-family:'Syne',sans-serif;transition:border-color .2s;}
-.f-input:focus{outline:none;border-color:var(--gold);}
-.f-input::placeholder{color:var(--text-dim);}
-.auth-btn{width:100%;padding:12px;background:var(--gold);border:none;color:#0F0E0C;font-family:'Syne',sans-serif;font-size:13.5px;font-weight:600;letter-spacing:.06em;border-radius:6px;cursor:pointer;transition:all .2s;margin-top:6px;}
-.auth-btn:hover{background:var(--gold2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(201,150,58,.3);}
-.auth-error{background:rgba(160,90,58,.15);border:1px solid rgba(160,90,58,.3);color:#E8785A;padding:10px 14px;border-radius:6px;font-size:12px;margin-bottom:14px;display:none;}
-.auth-success{background:rgba(106,155,110,.15);border:1px solid rgba(106,155,110,.3);color:var(--green);padding:10px 14px;border-radius:6px;font-size:12px;margin-bottom:14px;display:none;}
-.auth-footer{text-align:center;margin-top:18px;font-size:11.5px;color:var(--text-dim);}
-.auth-footer span{color:var(--gold);cursor:pointer;font-weight:500;}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--gold-border);border-radius:2px;}
 
-
-/* ── APP LAYOUT ── */
-#app-screen{display:none;}
+/* ── LAYOUT ── */
 .app{display:flex;min-height:100vh;}
 
 /* ── SIDEBAR ── */
-.sidebar{width:220px;min-width:220px;background:var(--bg2);border-right:1px solid var(--border);padding:28px 0;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;overflow-y:auto;}
-.sidebar-logo{padding:0 22px 22px;border-bottom:1px solid var(--border);margin-bottom:14px;}
+.sidebar{
+  width:220px;min-width:220px;background:var(--bg2);
+  border-right:1px solid var(--border);
+  padding:28px 0; position:sticky;top:0;height:100vh;
+  display:flex;flex-direction:column;gap:0;overflow-y:auto;
+  animation:fadeIn .5s ease both;
+}
+.sidebar-logo{
+  padding:0 22px 24px;border-bottom:1px solid var(--border);margin-bottom:16px;
+}
 .logo-tag{font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:6px;}
 .logo-title{font-family:'Playfair Display',serif;font-size:18px;line-height:1.2;color:var(--text);}
 .logo-title em{font-style:italic;color:var(--gold);}
-.nav-section-label{font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-dim);padding:12px 22px 6px;font-weight:600;}
-.nav-item{display:flex;align-items:center;gap:10px;padding:10px 22px;cursor:pointer;transition:all .2s;font-size:12.5px;color:var(--text-mid);font-weight:400;border-left:2px solid transparent;text-decoration:none;}
+
+.nav-section-label{
+  font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--text-dim);padding:12px 22px 6px;font-weight:600;
+}
+.nav-item{
+  display:flex;align-items:center;gap:10px;
+  padding:10px 22px;cursor:pointer;transition:all .2s;
+  font-size:12.5px;color:var(--text-mid);font-weight:400;
+  border-left:2px solid transparent;text-decoration:none;
+}
 .nav-item:hover{color:var(--text);background:rgba(255,255,255,.03);}
 .nav-item.active{color:var(--gold2);border-left-color:var(--gold);background:var(--gold-dim);}
 .nav-icon{font-size:14px;flex-shrink:0;}
-.user-pill{display:flex;align-items:center;gap:8px;padding:12px 22px;border-top:1px solid var(--border);margin-top:auto;}
-.u-avatar{width:28px;height:28px;border-radius:50%;background:var(--gold-dim);border:1.5px solid var(--gold-border);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;color:var(--gold2);flex-shrink:0;}
-.u-info{flex:1;min-width:0;}
-.u-name{font-size:11.5px;font-weight:500;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.u-role{font-size:10px;color:var(--text-dim);}
-.logout-btn{font-size:11px;color:var(--text-dim);cursor:pointer;padding:3px 7px;border-radius:3px;border:1px solid var(--border);transition:all .2s;background:transparent;font-family:'Syne',sans-serif;}
-.logout-btn:hover{color:var(--red);border-color:rgba(160,90,58,.4);}
-.sidebar-footer{padding:12px 22px 0;font-size:10.5px;color:var(--text-dim);line-height:1.6;}
+
+.sidebar-footer{
+  margin-top:auto;padding:16px 22px;border-top:1px solid var(--border);
+  font-size:10.5px;color:var(--text-dim);line-height:1.6;
+}
 
 /* ── MAIN ── */
 .main{flex:1;overflow-y:auto;overflow-x:hidden;}
-.topbar{background:var(--bg2);border-bottom:1px solid var(--border);padding:16px 36px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+
+/* ── TOPBAR ── */
+.topbar{
+  background:var(--bg2);border-bottom:1px solid var(--border);
+  padding:16px 36px;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
 .topbar-title{font-size:13px;color:var(--text-mid);font-weight:400;}
 .topbar-title span{color:var(--gold2);font-weight:500;}
 .topbar-actions{display:flex;gap:10px;}
-.btn{padding:7px 16px;border-radius:4px;font-size:11.5px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .18s;font-weight:500;letter-spacing:.04em;border:1px solid var(--gold-border);color:var(--gold2);background:var(--gold-dim);}
+.btn{
+  padding:7px 16px;border-radius:4px;font-size:11.5px;cursor:pointer;
+  font-family:'Syne',sans-serif;transition:all .18s;font-weight:500;
+  letter-spacing:.04em;border:1px solid var(--gold-border);
+  color:var(--gold2);background:var(--gold-dim);
+}
 .btn:hover{background:rgba(201,150,58,.25);border-color:var(--gold);}
 .btn-ghost{background:transparent;border-color:var(--border);color:var(--text-mid);}
 .btn-ghost:hover{border-color:var(--gold-border);color:var(--text);}
-.btn-danger{background:rgba(160,90,58,.12);border-color:rgba(160,90,58,.3);color:#E8785A;}
-.btn-danger:hover{background:rgba(160,90,58,.22);}
 
 /* ── SECTIONS ── */
 .section{display:none;padding:40px 36px;animation:fadeUp .35s ease both;}
 .section.active{display:block;}
-.section-header{margin-bottom:30px;}
-.section-eyebrow{font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:10px;}
-.section-title{font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);font-weight:400;line-height:1.1;margin-bottom:8px;}
+
+.section-header{margin-bottom:32px;}
+.section-eyebrow{
+  font-size:9.5px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:10px;
+}
+.section-title{
+  font-family:'Playfair Display',serif;font-size:clamp(24px,3vw,34px);
+  font-weight:400;line-height:1.1;margin-bottom:8px;
+}
 .section-title em{font-style:italic;color:var(--gold);}
 .section-desc{font-size:13px;color:var(--text-dim);line-height:1.65;max-width:580px;}
 
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:22px;transition:all .2s;
+}
+.card:hover{border-color:var(--gold-border);}
+
 /* ── GRID ── */
-.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
 .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.grid-auto{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
 
 /* ── FILTER BAR ── */
-.filter-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px;padding:14px 18px;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);}
-.filter-label{font-size:10.5px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;font-weight:600;}
-.filter-select{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:6px 28px 6px 12px;border-radius:4px;font-size:12px;font-family:'Syne',sans-serif;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9963A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;transition:border-color .2s;}
-.filter-chip{padding:5px 12px;border-radius:20px;font-size:11px;cursor:pointer;border:1px solid var(--border);color:var(--text-dim);transition:all .2s;font-weight:500;}
-.filter-chip:hover,.filter-chip.active{background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold2);}
+.filter-bar{
+  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
+  margin-bottom:24px;padding:16px 20px;
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+}
+.filter-label{font-size:11px;color:var(--text-dim);text-transform:uppercase;letter-spacing:.1em;font-weight:600;}
+.filter-select{
+  background:var(--bg3);border:1px solid var(--border);color:var(--text);
+  padding:6px 28px 6px 12px;border-radius:4px;font-size:12px;
+  font-family:'Syne',sans-serif;cursor:pointer;appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9963A'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 10px center;
+  transition:border-color .2s;
+}
+.filter-select:hover{border-color:var(--gold-border);}
+.filter-chip{
+  padding:5px 12px;border-radius:20px;font-size:11px;cursor:pointer;
+  border:1px solid var(--border);color:var(--text-dim);transition:all .2s;font-weight:500;
+}
+.filter-chip:hover,.filter-chip.active{
+  background:var(--gold-dim);border-color:var(--gold-border);color:var(--gold2);
+}
 
 /* ── PORTAL CARDS ── */
-.portal-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .2s;display:flex;flex-direction:column;gap:10px;position:relative;overflow:hidden;}
-.portal-card::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),transparent);opacity:0;transition:opacity .2s;}
+.portal-card{
+  background:var(--card);border:1px solid var(--border);border-radius:var(--radius);
+  padding:20px;transition:all .2s;display:flex;flex-direction:column;gap:12px;
+  position:relative;overflow:hidden;
+}
+.portal-card::after{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:0;transition:opacity .2s;
+}
 .portal-card:hover{border-color:var(--gold-border);transform:translateY(-2px);}
 .portal-card:hover::after{opacity:1;}
+.portal-card[style*="display:none"]{display:none!important;}
+
 .portal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
 .portal-icon{font-size:22px;}
-.portal-badge{font-size:9px;padding:3px 8px;border-radius:20px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;}
+.portal-badge{
+  font-size:9.5px;padding:3px 8px;border-radius:20px;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;
+}
 .badge-ufficiale{background:rgba(106,155,110,.15);color:var(--green);border:1px solid rgba(106,155,110,.3);}
 .badge-portale{background:rgba(74,122,155,.15);color:var(--blue);border:1px solid rgba(74,122,155,.3);}
 .badge-banca{background:rgba(201,150,58,.12);color:var(--gold);border:1px solid var(--gold-border);}
 .portal-name{font-size:14px;font-weight:600;color:var(--text);}
 .portal-desc{font-size:12px;color:var(--text-dim);line-height:1.55;}
-.portal-meta{display:flex;gap:6px;flex-wrap:wrap;}
-.meta-tag{font-size:10px;padding:2px 8px;border-radius:3px;background:rgba(255,255,255,.05);color:var(--text-dim);}
-.portal-actions{display:flex;gap:6px;margin-top:2px;flex-wrap:wrap;}
-.portal-link{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--gold);text-decoration:none;border:1px solid var(--gold-border);padding:5px 12px;border-radius:4px;transition:all .2s;background:var(--gold-dim);}
+.portal-meta{display:flex;gap:8px;flex-wrap:wrap;}
+.meta-tag{
+  font-size:10px;padding:2px 8px;border-radius:3px;
+  background:rgba(255,255,255,.05);color:var(--text-dim);
+}
+.portal-actions{display:flex;gap:8px;margin-top:4px;}
+.portal-link{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;color:var(--gold);text-decoration:none;
+  border:1px solid var(--gold-border);padding:5px 12px;border-radius:4px;
+  transition:all .2s;background:var(--gold-dim);
+}
 .portal-link:hover{background:rgba(201,150,58,.25);}
-.portal-link-note{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-dim);border:1px solid var(--border);padding:5px 12px;border-radius:4px;transition:all .2s;cursor:pointer;}
+.portal-link-note{
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:11.5px;color:var(--text-dim);text-decoration:none;
+  border:1px solid var(--border);padding:5px 12px;border-radius:4px;
+  transition:all .2s;cursor:pointer;
+}
 .portal-link-note:hover{border-color:var(--gold-border);color:var(--text);}
-.portal-del-btn{display:none;font-size:11px;color:rgba(160,90,58,.7);border:1px solid rgba(160,90,58,.3);padding:5px 10px;border-radius:4px;cursor:pointer;background:transparent;font-family:'Syne',sans-serif;transition:all .2s;}
-.portal-del-btn:hover{color:var(--red);border-color:var(--red);background:rgba(160,90,58,.1);}
-.is-admin .portal-del-btn{display:inline-flex;}
 
-/* ── INLINE NOTE ── */
-.inline-note{margin-top:4px;display:none;}
-.inline-note textarea{width:100%;background:var(--bg3);border:1px solid var(--gold-border);color:var(--text);padding:8px 12px;border-radius:4px;font-size:12px;font-family:'Syne',sans-serif;resize:vertical;min-height:58px;line-height:1.5;}
+/* ── NOTES INLINE ── */
+.inline-note{
+  margin-top:6px;display:none;
+}
+.inline-note textarea{
+  width:100%;background:var(--bg3);border:1px solid var(--gold-border);
+  color:var(--text);padding:8px 12px;border-radius:4px;font-size:12px;
+  font-family:'Syne',sans-serif;resize:vertical;min-height:60px;line-height:1.5;
+}
 .inline-note textarea:focus{outline:none;border-color:var(--gold);}
-.note-save-btn{margin-top:5px;padding:5px 14px;background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold2);border-radius:4px;font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:500;}
+.note-save-btn{
+  margin-top:6px;padding:5px 14px;background:var(--gold-dim);
+  border:1px solid var(--gold-border);color:var(--gold2);
+  border-radius:4px;font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;
+  font-weight:500;
+}
 .note-saved-text{font-size:10.5px;color:var(--green);margin-top:4px;display:none;}
 
 /* ── SOCIAL CARDS ── */
-.social-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;transition:all .2s;}
+.social-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px;transition:all .2s;
+}
 .social-card:hover{border-color:var(--gold-border);}
 .social-header{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
-.social-platform-icon{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
+.social-platform-icon{
+  width:36px;height:36px;border-radius:8px;display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0;
+}
 .s-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);}
 .s-yt{background:#FF0000;}
 .s-fb{background:#1877F2;}
-.s-tt{background:#010101;border:1px solid rgba(255,255,255,.12);}
+.s-tt{background:#000;}
 .s-li{background:#0A66C2;}
+.s-tw{background:#1DA1F2;}
 .social-name{font-size:14px;font-weight:600;}
 .social-handle{font-size:11px;color:var(--text-dim);}
-.social-desc{font-size:12px;color:var(--text-dim);line-height:1.55;margin-bottom:10px;}
+.social-desc{font-size:12px;color:var(--text-dim);line-height:1.55;margin-bottom:12px;}
+.social-stats{display:flex;gap:16px;font-size:11px;color:var(--text-dim);margin-bottom:12px;}
+.social-stat strong{color:var(--gold2);font-size:13px;display:block;font-weight:600;}
 
 /* ── ADD FORM ── */
-.add-form{background:var(--card2);border:1px solid var(--gold-border);border-radius:var(--radius);padding:22px;margin-bottom:22px;display:none;}
+.add-form{
+  background:var(--card2);border:1px solid var(--gold-border);
+  border-radius:var(--radius);padding:24px;margin-bottom:24px;display:none;
+}
 .add-form.open{display:block;animation:fadeUp .3s ease both;}
-.form-title{font-size:13px;font-weight:600;color:var(--gold2);margin-bottom:14px;}
-.fg{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
-.fg-full{grid-column:1/-1;}
-.fgi{display:flex;flex-direction:column;gap:5px;}
-.fgi-l{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--text-dim);font-weight:600;}
-.fi,.ft,.fs{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:4px;font-size:13px;font-family:'Syne',sans-serif;transition:border-color .2s;width:100%;}
-.fi:focus,.ft:focus,.fs:focus{outline:none;border-color:var(--gold);}
-.ft{resize:vertical;min-height:68px;line-height:1.5;}
-.fs{appearance:none;cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%23C9963A'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;}
-.form-actions{display:flex;gap:8px;}
+.form-title{font-size:13px;font-weight:600;color:var(--gold2);margin-bottom:16px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+.form-full{grid-column:1/-1;}
+.form-group{display:flex;flex-direction:column;gap:5px;}
+.form-label{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--text-dim);font-weight:600;}
+.form-input,.form-textarea,.form-select{
+  background:var(--bg3);border:1px solid var(--border);color:var(--text);
+  padding:8px 12px;border-radius:4px;font-size:13px;font-family:'Syne',sans-serif;
+  transition:border-color .2s;
+}
+.form-input:focus,.form-textarea:focus,.form-select:focus{outline:none;border-color:var(--gold);}
+.form-textarea{resize:vertical;min-height:70px;line-height:1.5;}
+.form-select{appearance:none;cursor:pointer;}
+.form-actions{display:flex;gap:8px;margin-top:4px;}
 
-/* ── SERVICES TABLE ── */
-.cost-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:28px;}
-.cost-box{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 20px;}
-.cost-box-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:7px;}
-.cost-box-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold2);}
-.cost-box-sub{font-size:11px;color:var(--text-dim);margin-top:4px;}
-.tbl-wrap{overflow-x:auto;}
-.stbl{width:100%;border-collapse:collapse;}
-.stbl th{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:600;padding:10px 14px;border-bottom:1px solid var(--gold-border);text-align:left;white-space:nowrap;}
-.stbl td{padding:13px 14px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;}
-.stbl tr:hover td{background:rgba(255,255,255,.02);}
-.stbl tr:last-child td{border-bottom:none;}
+/* ── SERVIZI TABLE ── */
+.services-table-wrap{overflow-x:auto;margin-bottom:24px;}
+.services-table{width:100%;border-collapse:collapse;}
+.services-table th{
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--text-dim);font-weight:600;padding:10px 14px;
+  border-bottom:1px solid var(--gold-border);text-align:left;white-space:nowrap;
+}
+.services-table td{
+  padding:13px 14px;font-size:13px;border-bottom:1px solid var(--border);
+  vertical-align:middle;
+}
+.services-table tr:hover td{background:rgba(255,255,255,.02);}
+.services-table tr:last-child td{border-bottom:none;}
 .cost-cell{font-family:'Playfair Display',serif;font-size:15px;color:var(--gold2);}
-.sdot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;}
-.sdot-g{background:var(--green);}
-.sdot-y{background:#D4A84B;}
-.sdot-r{background:var(--red);}
-.del-btn{background:transparent;border:1px solid rgba(160,90,58,.3);color:rgba(160,90,58,.7);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;}
+.status-dot{
+  width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:6px;
+}
+.dot-green{background:var(--green);}
+.dot-yellow{background:#D4A84B;}
+.dot-red{background:var(--red);}
+.del-btn{
+  background:transparent;border:1px solid rgba(160,90,58,.3);
+  color:rgba(160,90,58,.7);padding:4px 10px;border-radius:4px;
+  font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;
+}
 .del-btn:hover{background:rgba(160,90,58,.15);border-color:var(--red);color:var(--red);}
-.edit-btn{background:var(--gold-dim);border:1px solid var(--gold-border);color:var(--gold2);padding:4px 10px;border-radius:4px;font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;}
+.edit-btn{
+  background:var(--gold-dim);border:1px solid var(--gold-border);
+  color:var(--gold2);padding:4px 10px;border-radius:4px;
+  font-size:11px;cursor:pointer;font-family:'Syne',sans-serif;transition:all .2s;
+}
 .edit-btn:hover{background:rgba(201,150,58,.25);}
 
-/* ── ROADMAP ── */
-.tl{position:relative;padding-left:32px;}
-.tl::before{content:'';position:absolute;left:10px;top:12px;bottom:12px;width:1px;background:linear-gradient(180deg,var(--gold),transparent);}
-.tl-item{position:relative;margin-bottom:30px;}
-.tl-dot{position:absolute;left:-32px;top:6px;width:20px;height:20px;border-radius:50%;border:2px solid var(--gold);background:var(--bg2);display:flex;align-items:center;justify-content:center;font-size:9px;z-index:1;transition:all .3s;}
+/* ── COST SUMMARY ── */
+.cost-summary{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:32px;
+}
+.cost-box{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:18px 20px;
+}
+.cost-box-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:8px;}
+.cost-box-val{font-family:'Playfair Display',serif;font-size:26px;color:var(--gold2);}
+.cost-box-sub{font-size:11px;color:var(--text-dim);margin-top:4px;}
+
+/* ── ROADMAP / TIMELINE ── */
+.timeline{position:relative;padding-left:32px;}
+.timeline::before{
+  content:'';position:absolute;left:10px;top:12px;bottom:12px;
+  width:1px;background:linear-gradient(180deg,var(--gold),transparent);
+}
+.tl-item{position:relative;margin-bottom:32px;}
+.tl-dot{
+  position:absolute;left:-32px;top:6px;
+  width:20px;height:20px;border-radius:50%;
+  border:2px solid var(--gold);background:var(--bg2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:9px;z-index:1;transition:all .3s;
+}
 .tl-dot.done{background:var(--gold);color:var(--bg);}
-.tl-dot.now{background:var(--bg2);border-color:var(--gold2);box-shadow:0 0 12px rgba(201,150,58,.4);}
-.tl-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px 22px;transition:border-color .2s;cursor:pointer;}
-.tl-card:hover,.tl-card.exp{border-color:var(--gold-border);}
-.tl-month{font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:5px;}
+.tl-dot.active-now{
+  background:var(--bg2);border-color:var(--gold2);
+  box-shadow:0 0 12px rgba(201,150,58,.4);
+}
+.tl-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px 22px;
+  transition:border-color .2s;cursor:pointer;
+}
+.tl-card:hover,.tl-card.expanded{border-color:var(--gold-border);}
+.tl-month{
+  font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;margin-bottom:6px;
+}
 .tl-title{font-size:15px;font-weight:600;margin-bottom:4px;display:flex;align-items:center;justify-content:space-between;}
-.tl-chevron{font-size:13px;transition:transform .2s;}
-.tl-card.exp .tl-chevron{transform:rotate(180deg);}
-.tl-sub{font-size:12px;color:var(--text-dim);}
-.tl-body{display:none;margin-top:14px;padding-top:14px;border-top:1px solid var(--border);}
-.tl-card.exp .tl-body{display:block;}
-.tl-tasks{display:flex;flex-direction:column;gap:7px;}
-.tl-task{display:flex;align-items:flex-start;gap:10px;font-size:12.5px;color:var(--text-mid);line-height:1.5;cursor:pointer;padding:5px 0;}
-.tl-chk{width:16px;height:16px;border-radius:3px;border:1.5px solid var(--gold-border);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:9px;transition:all .2s;}
-.tl-task.chkd{color:var(--text-dim);text-decoration:line-through;}
-.tl-task.chkd .tl-chk{background:var(--green);border-color:var(--green);color:#fff;}
-.pod-tag{display:inline-flex;align-items:center;gap:4px;background:linear-gradient(135deg,rgba(131,58,180,.18),rgba(253,29,29,.18));border:1px solid rgba(253,29,29,.2);color:#fd6d6d;font-size:10px;padding:2px 8px;border-radius:20px;font-weight:600;letter-spacing:.04em;margin-left:8px;}
+.tl-title-icon{font-size:13px;transition:transform .2s;}
+.tl-card.expanded .tl-title-icon{transform:rotate(180deg);}
+.tl-subtitle{font-size:12px;color:var(--text-dim);margin-bottom:0;}
+.tl-body{
+  display:none;margin-top:14px;padding-top:14px;
+  border-top:1px solid var(--border);
+}
+.tl-card.expanded .tl-body{display:block;}
+.tl-tasks{display:flex;flex-direction:column;gap:8px;}
+.tl-task{
+  display:flex;align-items:flex-start;gap:10px;
+  font-size:12.5px;color:var(--text-mid);line-height:1.5;
+  cursor:pointer;padding:6px 0;
+}
+.tl-task-check{
+  width:16px;height:16px;border-radius:3px;border:1.5px solid var(--gold-border);
+  flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;
+  font-size:9px;transition:all .2s;
+}
+.tl-task.checked{color:var(--text-dim);text-decoration:line-through;}
+.tl-task.checked .tl-task-check{background:var(--green);border-color:var(--green);color:white;}
+.tl-podcast-tag{
+  display:inline-flex;align-items:center;gap:4px;
+  background:linear-gradient(135deg,rgba(131,58,180,.2),rgba(253,29,29,.2));
+  border:1px solid rgba(253,29,29,.2);
+  color:#fd6d6d;font-size:10px;padding:2px 8px;border-radius:20px;
+  font-weight:600;letter-spacing:.05em;margin-left:8px;
+}
 
-/* ── ADMIN ── */
-.admin-banner{background:linear-gradient(90deg,rgba(232,120,90,.1),rgba(201,150,58,.07));border:1px solid rgba(232,120,90,.3);border-radius:var(--radius);padding:11px 18px;margin-bottom:22px;display:flex;align-items:center;gap:12px;font-size:12.5px;}
-.admin-banner strong{color:#E8785A;font-weight:600;}
-.role-badge{font-size:10px;padding:2px 9px;border-radius:20px;font-weight:600;}
-.role-admin{background:rgba(232,120,90,.15);color:#E8785A;border:1px solid rgba(232,120,90,.3);}
-.role-user{background:var(--gold-dim);color:var(--gold2);border:1px solid var(--gold-border);}
-
-/* ── ANCHOR NAV ── */
-.anchor-nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px;}
-.anchor-btn{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text-dim);border:1px solid var(--border);padding:5px 14px;border-radius:20px;transition:all .2s;cursor:pointer;background:transparent;font-family:'Syne',sans-serif;}
-.anchor-btn:hover{color:var(--gold2);border-color:var(--gold-border);}
-
-/* ── TIP ── */
-.tip{background:var(--card2);border:1px dashed var(--gold-border);border-radius:4px;padding:10px 14px;font-size:12px;color:var(--text-dim);margin-bottom:22px;display:flex;align-items:center;gap:8px;}
-.tip span{color:var(--gold);}
+/* ── EDITABLE TIPS ── */
+.editable-tip{
+  background:var(--card2);border:1px dashed var(--gold-border);
+  border-radius:4px;padding:10px 14px;font-size:12px;color:var(--text-dim);
+  margin-bottom:24px;display:flex;align-items:center;gap:8px;
+}
+.editable-tip span{color:var(--gold);}
 
 /* ── EMPTY STATE ── */
-.empty-state{text-align:center;padding:48px 24px;color:var(--text-dim);font-size:13px;}
+.empty-state{
+  text-align:center;padding:48px 24px;
+  color:var(--text-dim);font-size:13px;
+}
 .empty-icon{font-size:32px;margin-bottom:12px;}
 .empty-title{font-size:15px;font-weight:500;color:var(--text-mid);margin-bottom:6px;}
-
-/* ── SECTION DIVIDER ── */
-.sub-section-label{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:12px;}
 
 /* ── ANIMATIONS ── */
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px);}to{opacity:1;transform:translateY(0);}}
 @keyframes fadeIn{from{opacity:0;}to{opacity:1;}}
-@keyframes shake{0%,100%{transform:translateX(0);}20%,60%{transform:translateX(-6px);}40%,80%{transform:translateX(6px);}}
 
-@media(max-width:860px){
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
   .sidebar{display:none;}
-  .section,.topbar{padding-left:20px;padding-right:20px;}
-  .cost-summary,.grid-3{grid-template-columns:1fr;}
-  .fg{grid-template-columns:1fr;}
+  .section{padding:24px 20px;}
+  .grid-2,.grid-3{grid-template-columns:1fr;}
+  .cost-summary{grid-template-columns:1fr;}
+  .form-grid{grid-template-columns:1fr;}
 }
+
+/* ── SECTION ANCHORS ── */
+.anchor-nav{
+  display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;
+}
+.anchor-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11.5px;color:var(--text-dim);text-decoration:none;
+  border:1px solid var(--border);padding:5px 14px;border-radius:20px;
+  transition:all .2s;cursor:pointer;background:transparent;font-family:'Syne',sans-serif;
+}
+.anchor-btn:hover{color:var(--gold2);border-color:var(--gold-border);}
 </style>
 </head>
 <body>
+<div class="app">
 
-<!-- ═══════════════════════════ AUTH ═══════════════════════════ -->
-<div id="auth-screen">
-  <div class="auth-box">
-    <div class="auth-logo">
-      <div class="auth-logo-eyebrow">Accesso Riservato · Italia</div>
-      <div class="auth-logo-title">Aste <em>Immobiliari</em><br>Hub Personale</div>
-      <div class="auth-logo-sub">Accedi o crea il tuo account gratuito</div>
-    </div>
-    <div class="auth-tabs">
-      <div class="auth-tab active" onclick="switchAuthTab('login')">Accedi</div>
-      <div class="auth-tab" onclick="switchAuthTab('register')">Registrati</div>
-    </div>
+<!-- ══ SIDEBAR ══ -->
+<nav class="sidebar">
+  <div class="sidebar-logo">
+    <div class="logo-tag">Hub Personale</div>
+    <div class="logo-title">Aste<br><em>Immobiliari</em><br>Italia</div>
+  </div>
 
-    <!-- LOGIN -->
-    <div id="auth-login" class="auth-panel active">
-      <div class="auth-error" id="login-error"></div>
-      <div class="f-group"><label class="f-label">Email</label><input class="f-input" id="l-email" type="email" placeholder="la-tua@email.it" autocomplete="email"></div>
-      <div class="f-group"><label class="f-label">Password</label><input class="f-input" id="l-pwd" type="password" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
-      <button class="auth-btn" onclick="doLogin()">Entra nell'Hub →</button>
-      <div class="auth-footer">Non hai un account? <span onclick="switchAuthTab('register')">Registrati gratis</span></div>
-    </div>
+  <div class="nav-section-label">Navigazione</div>
+  <a class="nav-item active" onclick="showSection('portali')" href="#portali">
+    <span class="nav-icon">⚖️</span> Portali & Siti
+  </a>
+  <a class="nav-item" onclick="showSection('social')" href="#social">
+    <span class="nav-icon">📱</span> Canali Social
+  </a>
+  <a class="nav-item" onclick="showSection('servizi')" href="#servizi">
+    <span class="nav-icon">💼</span> Servizi & Costi
+  </a>
+  <a class="nav-item" onclick="showSection('roadmap')" href="#roadmap">
+    <span class="nav-icon">🎙️</span> Roadmap & Podcast
+  </a>
 
-    <!-- REGISTER -->
-    <div id="auth-register" class="auth-panel">
-      <div class="auth-error" id="reg-error"></div>
-      <div class="auth-success" id="reg-success"></div>
-      <div class="f-group"><label class="f-label">Nome Completo</label><input class="f-input" id="r-name" type="text" placeholder="Mario Rossi"></div>
-      <div class="f-group"><label class="f-label">Email</label><input class="f-input" id="r-email" type="email" placeholder="la-tua@email.it" autocomplete="email"></div>
-      <div class="f-group"><label class="f-label">Telefono</label><input class="f-input" id="r-phone" type="tel" placeholder="+39 333 1234567"></div>
-      <div class="f-group"><label class="f-label">Password <span style="color:var(--text-dim);font-size:10px;">(min. 6 caratteri)</span></label><input class="f-input" id="r-pwd" type="password" placeholder="Scegli una password"></div>
-      <div class="f-group"><label class="f-label">Conferma Password</label><input class="f-input" id="r-pwd2" type="password" placeholder="Ripeti la password" onkeydown="if(event.key==='Enter')doRegister()"></div>
-      <button class="auth-btn" onclick="doRegister()">Crea Account Gratuito</button>
-      <div class="auth-footer">Hai già un account? <span onclick="switchAuthTab('login')">Accedi</span></div>
+  <div class="nav-section-label" style="margin-top:16px;">Link Rapidi</div>
+  <a class="nav-item" href="https://pvp.giustizia.it" target="_blank">
+    <span class="nav-icon">🔗</span> PVP Giustizia
+  </a>
+  <a class="nav-item" href="https://www.ivg.it" target="_blank">
+    <span class="nav-icon">🔗</span> IVG.it
+  </a>
+  <a class="nav-item" href="https://www.immobiliare.it/aste/" target="_blank">
+    <span class="nav-icon">🔗</span> Immobiliare.it
+  </a>
+
+  <div class="sidebar-footer">
+    Clicca su <strong style="color:var(--gold)">✏️ Note</strong> in ogni portale per aggiungere annotazioni personali.
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<div class="main">
+
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="topbar-title">Hub Aste Immobiliari · <span>Gestione Personale</span></div>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" onclick="exportNotes()">⬇ Esporta Note</button>
     </div>
   </div>
-</div>
 
-<!-- ═══════════════════════════ APP ═══════════════════════════ -->
-<div id="app-screen">
-<div class="app" id="main-app">
-
-  <nav class="sidebar">
-    <div class="sidebar-logo">
-      <div class="logo-tag">Hub Personale</div>
-      <div class="logo-title">Aste<br><em>Immobiliari</em><br>Italia</div>
-    </div>
-    <div class="nav-section-label">Sezioni</div>
-    <a class="nav-item active" onclick="showSection('portali',this)"><span class="nav-icon">⚖️</span> Portali & Siti</a>
-    <a class="nav-item" onclick="showSection('social',this)"><span class="nav-icon">📱</span> Canali Social</a>
-    <a class="nav-item" onclick="showSection('servizi',this)"><span class="nav-icon">💼</span> Servizi & Costi</a>
-    <a class="nav-item" onclick="showSection('roadmap',this)"><span class="nav-icon">🎙️</span> Roadmap & Podcast</a>
-    <div class="nav-section-label" style="margin-top:8px;">Link Rapidi</div>
-    <a class="nav-item" href="https://pvp.giustizia.it" target="_blank"><span class="nav-icon">🔗</span> PVP Giustizia</a>
-    <a class="nav-item" href="https://www.ivg.it" target="_blank"><span class="nav-icon">🔗</span> IVG.it</a>
-    <a class="nav-item" href="https://www.immobiliare.it/aste/" target="_blank"><span class="nav-icon">🔗</span> Immobiliare.it</a>
-    <div id="admin-nav-wrap" style="display:none;">
-      <div class="nav-section-label" style="margin-top:8px;">Amministrazione</div>
-      <a class="nav-item" onclick="showSection('admin',this)" style="color:#E8785A;"><span class="nav-icon">🛡️</span> Pannello Admin</a>
-    </div>
-    <div class="user-pill">
-      <div class="u-avatar" id="u-av">?</div>
-      <div class="u-info"><div class="u-name" id="u-nm">Utente</div><div class="u-role" id="u-rl">Membro</div></div>
-      <button class="logout-btn" onclick="doLogout()" title="Esci">↩</button>
-    </div>
-    <div class="sidebar-footer">Clicca <strong style="color:var(--gold)">✏️ Note</strong> per annotazioni personali.</div>
-  </nav>
-
-  <div class="main">
-    <div class="topbar">
-      <div class="topbar-title">Hub Aste Immobiliari · <span id="topbar-name">Portali & Siti Ufficiali</span></div>
-      <div class="topbar-actions"><button class="btn btn-ghost" onclick="exportNotes()">⬇ Esporta Note</button></div>
+  <!-- ══════════ SEZIONE 1: PORTALI ══════════ -->
+  <div id="section-portali" class="section active">
+    <div class="section-header">
+      <div class="section-eyebrow">Sezione 1 · Risorse Online</div>
+      <div class="section-title">Portali <em>Ufficiali</em> & Siti Aste</div>
+      <div class="section-desc">Tutti i siti per trovare immobili in asta in Italia. Filtra per tipo o provincia, apri direttamente i link e aggiungi note personali a ogni portale.</div>
     </div>
 
-    <!-- ═══ PORTALI ═══ -->
-    <div id="section-portali" class="section active">
-      <div class="section-header">
-        <div class="section-eyebrow">Sezione 1 · Risorse Online</div>
-        <div class="section-title">Portali <em>Ufficiali</em> & Siti Aste</div>
-        <div class="section-desc">Tutti i siti per trovare immobili in asta in Italia. Filtra per tipo o provincia, apri i link e aggiungi note personali su ogni portale.</div>
+    <!-- ANCHOR NAV -->
+    <div class="anchor-nav">
+      <button class="anchor-btn" onclick="scrollToAnchor('ufficiali')">⚖️ Ufficiali</button>
+      <button class="anchor-btn" onclick="scrollToAnchor('portali-gen')">🏠 Portali Generalisti</button>
+      <button class="anchor-btn" onclick="scrollToAnchor('bancari')">🏦 Bancari / NPL</button>
+    </div>
+
+    <!-- FILTRI -->
+    <div class="filter-bar">
+      <span class="filter-label">Filtra:</span>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;" id="type-filters">
+        <span class="filter-chip active" onclick="filterPortals('all',this)">Tutti</span>
+        <span class="filter-chip" onclick="filterPortals('ufficiale',this)">⚖️ Ufficiali</span>
+        <span class="filter-chip" onclick="filterPortals('portale',this)">🏠 Portali</span>
+        <span class="filter-chip" onclick="filterPortals('banca',this)">🏦 Bancari</span>
       </div>
-      <div id="admin-portal-banner" class="admin-banner" style="display:none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin attiva:</strong> puoi aggiungere ed eliminare portali. Le modifiche sono visibili a tutti gli utenti.</div></div>
-      <div class="anchor-nav">
-        <button class="anchor-btn" onclick="scrollTo('ufficiali')">⚖️ Ufficiali</button>
-        <button class="anchor-btn" onclick="scrollTo('portali-gen')">🏠 Generalisti</button>
-        <button class="anchor-btn" onclick="scrollTo('bancari')">🏦 Bancari</button>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+        <span class="filter-label">Provincia:</span>
+        <select class="filter-select" id="province-filter" onchange="filterByProvince()">
+          <option value="all">Tutte le province</option>
+          <option value="nazionale">🇮🇹 Nazionale</option>
+          <option value="bologna">Bologna</option>
+          <option value="milano">Milano</option>
+          <option value="roma">Roma</option>
+          <option value="napoli">Napoli</option>
+          <option value="torino">Torino</option>
+          <option value="firenze">Firenze</option>
+          <option value="venezia">Venezia</option>
+          <option value="genova">Genova</option>
+          <option value="palermo">Palermo</option>
+          <option value="bari">Bari</option>
+        </select>
       </div>
-      <div class="filter-bar">
-        <span class="filter-label">Tipo:</span>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;" id="type-filters">
-          <span class="filter-chip active" onclick="filterP('all',this)">Tutti</span>
-          <span class="filter-chip" onclick="filterP('ufficiale',this)">⚖️ Ufficiali</span>
-          <span class="filter-chip" onclick="filterP('portale',this)">🏠 Portali</span>
-          <span class="filter-chip" onclick="filterP('banca',this)">🏦 Bancari</span>
+    </div>
+
+    <!-- UFFICIALI -->
+    <div id="ufficiali" style="margin-bottom:12px;">
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:12px;">⚖️ Portali Giudiziari Ufficiali</div>
+    </div>
+    <div class="grid-auto" id="portal-grid-ufficiali">
+
+      <div class="portal-card" data-type="ufficiale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏛️</span>
+          <span class="portal-badge badge-ufficiale">Ufficiale</span>
         </div>
-        <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
-          <span class="filter-label">Provincia:</span>
-          <select class="filter-select" id="prov-filter" onchange="filterProv()">
-            <option value="all">Tutte</option><option value="nazionale">🇮🇹 Nazionale</option>
-            <option value="bologna">Bologna</option><option value="milano">Milano</option>
-            <option value="roma">Roma</option><option value="napoli">Napoli</option>
-            <option value="torino">Torino</option><option value="firenze">Firenze</option>
-            <option value="venezia">Venezia</option><option value="bari">Bari</option><option value="palermo">Palermo</option>
+        <div class="portal-name">PVP – Portale Vendite Pubbliche</div>
+        <div class="portal-desc">Portale ufficiale del Ministero della Giustizia. Obbligatorio per la pubblicazione di tutte le vendite giudiziarie in Italia.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Obbligatorio</span>
+          <span class="meta-tag">Gratuito</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://pvp.giustizia.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note su questo portale..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="ufficiale" data-province="bologna">
+        <div class="portal-top">
+          <span class="portal-icon">⚖️</span>
+          <span class="portal-badge badge-ufficiale">Ufficiale</span>
+        </div>
+        <div class="portal-name">IVG – Istituto Vendite Giudiziarie</div>
+        <div class="portal-desc">Rete degli IVG territoriali italiani. IVG Bologna tra i più attivi, con aste telematiche e in presenza per l'Emilia-Romagna.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">📍 Bologna</span>
+          <span class="meta-tag">Telematiche</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.ivg.it" target="_blank">↗ Apri Sito</a>
+          <a class="portal-link" href="https://www.ivgbologna.it" target="_blank" style="background:transparent;border-color:var(--border);color:var(--text-mid);">↗ IVG Bologna</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="ufficiale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🔨</span>
+          <span class="portal-badge badge-ufficiale">Ufficiale</span>
+        </div>
+        <div class="portal-name">Aste Giudiziarie Online (AGO)</div>
+        <div class="portal-desc">Piattaforma per aste telematiche delegate dai Tribunali. Ampia copertura nazionale con procedure esecutive immobiliari.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Telematiche</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.astegiudiziarieonline.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="ufficiale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏦</span>
+          <span class="portal-badge badge-ufficiale">Ufficiale</span>
+        </div>
+        <div class="portal-name">Asteweb</div>
+        <div class="portal-desc">Portale delegato per aste telematiche giudiziarie. Convenzioni con numerosi Tribunali su tutto il territorio italiano.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Tribunali</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.asteweb.com" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="ufficiale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">📋</span>
+          <span class="portal-badge badge-ufficiale">Ufficiale</span>
+        </div>
+        <div class="portal-name">Fallco Aste</div>
+        <div class="portal-desc">Piattaforma telematica per vendite delegate da procedure concorsuali e fallimentari. Molto usata dai curatori fallimentari.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Fallimenti</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.fallcoaste.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- PORTALI GENERALISTI -->
+    <div id="portali-gen" style="margin:28px 0 12px;">
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:12px;">🏠 Portali Immobiliari Generalisti</div>
+    </div>
+    <div class="grid-auto" id="portal-grid-gen">
+
+      <div class="portal-card" data-type="portale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏡</span>
+          <span class="portal-badge badge-portale">Portale</span>
+        </div>
+        <div class="portal-name">Immobiliare.it – Aste</div>
+        <div class="portal-desc">Il portale immobiliare italiano più visitato. Sezione aste con filtro per provincia, tipologia e prezzo base. Ottima visibilità per privati.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Filtro Provincia</span>
+          <span class="meta-tag">Alta audience</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.immobiliare.it/aste/" target="_blank">↗ Sezione Aste</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="portale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🔑</span>
+          <span class="portal-badge badge-portale">Portale</span>
+        </div>
+        <div class="portal-name">Idealista.it – Aste</div>
+        <div class="portal-desc">Portale spagnolo con forte presenza in Italia. Sezione aste con possibilità di filtrare per comune e zona. Molto usato a Milano e Roma.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Filtro Comune</span>
+          <span class="meta-tag">Milano / Roma</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.idealista.it/aste-immobiliari/" target="_blank">↗ Sezione Aste</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="portale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏘️</span>
+          <span class="portal-badge badge-portale">Portale</span>
+        </div>
+        <div class="portal-name">Casa.it – Aste</div>
+        <div class="portal-desc">Portale immobiliare con sezione dedicata agli immobili all'asta. Buona copertura su tutto il territorio, con ricerca per regione e provincia.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Filtro Regione</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.casa.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="portale" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🔍</span>
+          <span class="portal-badge badge-portale">Portale</span>
+        </div>
+        <div class="portal-name">Gazzetta Aste</div>
+        <div class="portal-desc">Portale specializzato esclusivamente in aste giudiziarie e volontarie. Aggregatore con schede dettagliate e notifiche su nuove aste per zona.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">🇮🇹 Nazionale</span>
+          <span class="meta-tag">Specializzato</span>
+          <span class="meta-tag">Alert Email</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.gazzettaaste.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BANCARI -->
+    <div id="bancari" style="margin:28px 0 12px;">
+      <div style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--text-dim);font-weight:600;margin-bottom:12px;">🏦 Portali Bancari & REO</div>
+    </div>
+    <div class="grid-auto" id="portal-grid-bancari">
+
+      <div class="portal-card" data-type="banca" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏦</span>
+          <span class="portal-badge badge-banca">Bancario</span>
+        </div>
+        <div class="portal-name">UniCredit REO – Subito Casa</div>
+        <div class="portal-desc">Portale di UniCredit per la vendita di immobili provenienti da procedure esecutive. Prezzi spesso inferiori al mercato, acquisto diretto dalla banca.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">UniCredit</span>
+          <span class="meta-tag">Acquisto Diretto</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.unicredit.it/it/privati/mutui-e-prestiti/immobili-in-vendita.html" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="banca" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">🏛️</span>
+          <span class="portal-badge badge-banca">Bancario</span>
+        </div>
+        <div class="portal-name">Intesa Sanpaolo – Case in Vendita</div>
+        <div class="portal-desc">Immobili di proprietà Intesa Sanpaolo derivanti da procedure esecutive, in vendita a prezzi competitivi con possibilità di finanziamento dedicato.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">Intesa Sanpaolo</span>
+          <span class="meta-tag">Finanziamento</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.intesasanpaolo.com" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="portal-card" data-type="banca" data-province="nazionale">
+        <div class="portal-top">
+          <span class="portal-icon">📊</span>
+          <span class="portal-badge badge-banca">Bancario</span>
+        </div>
+        <div class="portal-name">doValue – NPL Immobiliari</div>
+        <div class="portal-desc">Uno dei principali servicer NPL in Italia. Gestisce portafogli di crediti deteriorati con garanzia immobiliare per conto di banche e fondi.</div>
+        <div class="portal-meta">
+          <span class="meta-tag">NPL Servicer</span>
+          <span class="meta-tag">B2B</span>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.dovalue.it" target="_blank">↗ Apri Sito</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Aggiungi le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ADD PORTAL -->
+    <div style="margin-top:28px;">
+      <button class="btn" onclick="toggleAddForm('portal-form')">+ Aggiungi Portale</button>
+    </div>
+    <div id="portal-form" class="add-form">
+      <div class="form-title">➕ Aggiungi Nuovo Portale</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nome Portale</label>
+          <input class="form-input" id="p-name" placeholder="es. AsteImmobili.it">
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL</label>
+          <input class="form-input" id="p-url" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo</label>
+          <select class="form-select form-input" id="p-type">
+            <option value="ufficiale">⚖️ Ufficiale</option>
+            <option value="portale">🏠 Portale Generalista</option>
+            <option value="banca">🏦 Bancario / NPL</option>
           </select>
         </div>
-      </div>
-      <div id="ufficiali"><div class="sub-section-label">⚖️ Portali Giudiziari Ufficiali</div></div>
-      <div class="grid-auto" id="grid-ufficiali"></div>
-      <div id="portali-gen" style="margin-top:28px;"><div class="sub-section-label">🏠 Portali Immobiliari Generalisti</div></div>
-      <div class="grid-auto" id="grid-portale"></div>
-      <div id="bancari" style="margin-top:28px;"><div class="sub-section-label">🏦 Portali Bancari & REO</div></div>
-      <div class="grid-auto" id="grid-banca"></div>
-      <div id="add-portal-wrap" style="margin-top:28px;display:none;">
-        <button class="btn" onclick="toggleForm('portal-form')">+ Aggiungi Portale</button>
-      </div>
-      <div id="portal-form" class="add-form">
-        <div class="form-title">➕ Aggiungi Portale</div>
-        <div class="fg">
-          <div class="fgi"><label class="fgi-l">Nome</label><input class="fi" id="p-nm" placeholder="es. AsteImmobili.it"></div>
-          <div class="fgi"><label class="fgi-l">URL</label><input class="fi" id="p-url" placeholder="https://..."></div>
-          <div class="fgi"><label class="fgi-l">Tipo</label><select class="fs" id="p-type"><option value="ufficiale">⚖️ Ufficiale</option><option value="portale">🏠 Portale Generalista</option><option value="banca">🏦 Bancario / NPL</option></select></div>
-          <div class="fgi"><label class="fgi-l">Provincia</label><input class="fi" id="p-prov" placeholder="es. Bologna, Nazionale"></div>
-          <div class="fgi fg-full"><label class="fgi-l">Descrizione</label><textarea class="ft" id="p-desc" placeholder="Breve descrizione..."></textarea></div>
+        <div class="form-group">
+          <label class="form-label">Provincia / Area</label>
+          <input class="form-input" id="p-province" placeholder="es. Milano, Nazionale...">
         </div>
-        <div class="form-actions"><button class="btn" onclick="addPortal()">Aggiungi</button><button class="btn btn-ghost" onclick="toggleForm('portal-form')">Annulla</button></div>
+        <div class="form-group form-full">
+          <label class="form-label">Descrizione</label>
+          <textarea class="form-textarea" id="p-desc" placeholder="Breve descrizione del portale..."></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" onclick="addPortal()">Aggiungi</button>
+        <button class="btn btn-ghost" onclick="toggleAddForm('portal-form')">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SEZIONE 2: SOCIAL ══════════ -->
+  <div id="section-social" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Sezione 2 · Community & Contenuti</div>
+      <div class="section-title">Canali <em>Social</em> sulle Aste</div>
+      <div class="section-desc">Profili, pagine, gruppi e canali da seguire per restare aggiornato sulle aste immobiliari. Aggiungi i tuoi preferiti e tieni traccia di quelli utili.</div>
+    </div>
+
+    <div class="editable-tip">
+      <span>💡</span> Clicca su <strong>"✏️ Note"</strong> per salvare appunti su ogni canale — es. "da seguire", "utile per Bologna", ecc.
+    </div>
+
+    <!-- FILTER SOCIAL -->
+    <div class="filter-bar" style="margin-bottom:24px;">
+      <span class="filter-label">Piattaforma:</span>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;" id="social-filters">
+        <span class="filter-chip active" onclick="filterSocial('all',this)">Tutti</span>
+        <span class="filter-chip" onclick="filterSocial('instagram',this)">📸 Instagram</span>
+        <span class="filter-chip" onclick="filterSocial('youtube',this)">▶️ YouTube</span>
+        <span class="filter-chip" onclick="filterSocial('facebook',this)">👥 Facebook</span>
+        <span class="filter-chip" onclick="filterSocial('tiktok',this)">🎵 TikTok</span>
+        <span class="filter-chip" onclick="filterSocial('linkedin',this)">💼 LinkedIn</span>
       </div>
     </div>
 
-    <!-- ═══ SOCIAL ═══ -->
-    <div id="section-social" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Sezione 2 · Community & Contenuti</div>
-        <div class="section-title">Canali <em>Social</em> sulle Aste</div>
-        <div class="section-desc">Profili, pagine e gruppi da seguire per restare aggiornato. Aggiungi note personali e i tuoi canali preferiti.</div>
-      </div>
-      <div id="admin-social-banner" class="admin-banner" style="display:none;"><span style="font-size:18px;">🛡️</span><div><strong>Modalità Admin:</strong> puoi aggiungere e rimuovere canali social per tutti gli utenti.</div></div>
-      <div class="tip"><span>💡</span>Clicca <strong>"✏️ Note"</strong> per annotare appunti personali su ogni canale.</div>
-      <div class="filter-bar">
-        <span class="filter-label">Piattaforma:</span>
-        <div style="display:flex;gap:6px;flex-wrap:wrap;" id="social-filters">
-          <span class="filter-chip active" onclick="filterS('all',this)">Tutti</span>
-          <span class="filter-chip" onclick="filterS('instagram',this)">📸 Instagram</span>
-          <span class="filter-chip" onclick="filterS('youtube',this)">▶️ YouTube</span>
-          <span class="filter-chip" onclick="filterS('facebook',this)">👥 Facebook</span>
-          <span class="filter-chip" onclick="filterS('tiktok',this)">🎵 TikTok</span>
-          <span class="filter-chip" onclick="filterS('linkedin',this)">💼 LinkedIn</span>
+    <div class="grid-auto" id="social-grid">
+
+      <div class="social-card" data-platform="instagram">
+        <div class="social-header">
+          <div class="social-platform-icon s-ig">📸</div>
+          <div><div class="social-name">Aste Immobiliari Italia</div><div class="social-handle">@asteimmobiliariitalia</div></div>
+        </div>
+        <div class="social-desc">Uno dei profili Instagram più seguiti sul tema. Pubblica guide, consigli pratici e segnalazioni di aste. Ottimo per chi inizia.</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>↗</strong>Instagram</div>
+          <div class="social-stat"><strong>Guide</strong>Contenuto</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.instagram.com/asteimmobiliariitalia" target="_blank">↗ Segui</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note su questo canale..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
         </div>
       </div>
-      <div class="grid-auto" id="social-grid"></div>
-      <div id="add-social-wrap" style="margin-top:22px;display:none;"><button class="btn" onclick="toggleForm('social-form')">+ Aggiungi Canale</button></div>
-      <div id="social-form" class="add-form">
-        <div class="form-title">➕ Aggiungi Canale Social</div>
-        <div class="fg">
-          <div class="fgi"><label class="fgi-l">Nome</label><input class="fi" id="s-nm" placeholder="es. @nomeprofilo"></div>
-          <div class="fgi"><label class="fgi-l">Piattaforma</label><select class="fs" id="s-pl"><option value="instagram">📸 Instagram</option><option value="youtube">▶️ YouTube</option><option value="facebook">👥 Facebook</option><option value="tiktok">🎵 TikTok</option><option value="linkedin">💼 LinkedIn</option></select></div>
-          <div class="fgi"><label class="fgi-l">URL</label><input class="fi" id="s-url" placeholder="https://..."></div>
-          <div class="fgi"><label class="fgi-l">Handle / Tipo</label><input class="fi" id="s-ct" placeholder="es. Guide, News, Community..."></div>
-          <div class="fgi fg-full"><label class="fgi-l">Descrizione</label><textarea class="ft" id="s-ds" placeholder="Perché seguirlo?"></textarea></div>
+
+      <div class="social-card" data-platform="youtube">
+        <div class="social-header">
+          <div class="social-platform-icon s-yt">▶️</div>
+          <div><div class="social-name">Aste Immobiliari – YouTube</div><div class="social-handle">Vari creator specializzati</div></div>
         </div>
-        <div class="form-actions"><button class="btn" onclick="addSocial()">Aggiungi</button><button class="btn btn-ghost" onclick="toggleForm('social-form')">Annulla</button></div>
+        <div class="social-desc">Su YouTube cerca "aste immobiliari Italia" per trovare video-guide su come partecipare, analisi di casi reali e interviste a professionisti del settore.</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>▶️</strong>YouTube</div>
+          <div class="social-stat"><strong>Video</strong>Tutorial</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.youtube.com/results?search_query=aste+immobiliari+italia" target="_blank">↗ Cerca su YT</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="social-card" data-platform="facebook">
+        <div class="social-header">
+          <div class="social-platform-icon s-fb">👥</div>
+          <div><div class="social-name">Gruppi FB – Aste Immobili</div><div class="social-handle">Vari gruppi pubblici e privati</div></div>
+        </div>
+        <div class="social-desc">Su Facebook esistono decine di gruppi locali e nazionali sulle aste immobiliari. Cerca "aste immobiliari [tua città]" per trovare community attive con segnalazioni in tempo reale.</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>👥</strong>Facebook</div>
+          <div class="social-stat"><strong>Community</strong>Locale</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.facebook.com/groups/search/results/?q=aste%20immobiliari" target="_blank">↗ Cerca Gruppi</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="social-card" data-platform="tiktok">
+        <div class="social-header">
+          <div class="social-platform-icon s-tt">🎵</div>
+          <div><div class="social-name">TikTok – #AsteImmobiliari</div><div class="social-handle">#asteimmobiliari #casaallasta</div></div>
+        </div>
+        <div class="social-desc">Contenuti brevi e virali su TikTok. Cerca gli hashtag #asteimmobiliari, #casaallasta, #investimentoimmobiliare. Profili giovani con buoni contenuti educativi.</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>🎵</strong>TikTok</div>
+          <div class="social-stat"><strong>Viral</strong>Short Video</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.tiktok.com/search?q=aste+immobiliari" target="_blank">↗ Cerca su TikTok</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="social-card" data-platform="linkedin">
+        <div class="social-header">
+          <div class="social-platform-icon s-li">💼</div>
+          <div><div class="social-name">LinkedIn – NPL & Real Estate</div><div class="social-handle">Professionisti del settore</div></div>
+        </div>
+        <div class="social-desc">Su LinkedIn segui professionisti NPL, servicer e avvocati specializzati in esecuzioni immobiliari. Cerca "aste immobiliari" o "NPL real estate Italy".</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>💼</strong>LinkedIn</div>
+          <div class="social-stat"><strong>B2B</strong>Professionale</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.linkedin.com/search/results/all/?keywords=aste%20immobiliari%20italia" target="_blank">↗ Cerca su LinkedIn</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+      <div class="social-card" data-platform="instagram">
+        <div class="social-header">
+          <div class="social-platform-icon s-ig">📸</div>
+          <div><div class="social-name">Podcast & Newsletter Settore</div><div class="social-handle">Varie risorse audio/scritte</div></div>
+        </div>
+        <div class="social-desc">Podcast italiani su investimenti immobiliari: "Il Mattone" e newsletter specializzate come "NPL Review" e "Real Estate Data Hub" per aggiornamenti settimanali.</div>
+        <div class="social-stats">
+          <div class="social-stat"><strong>🎙️</strong>Podcast</div>
+          <div class="social-stat"><strong>Newsletter</strong>Settimanale</div>
+        </div>
+        <div class="portal-actions">
+          <a class="portal-link" href="https://www.spotify.com/search/aste%20immobiliari" target="_blank">↗ Cerca Podcast</a>
+          <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+        </div>
+        <div class="inline-note">
+          <textarea placeholder="Le tue note..."></textarea>
+          <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+          <div class="note-saved-text">✓ Salvata</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ADD SOCIAL -->
+    <div style="margin-top:24px;">
+      <button class="btn" onclick="toggleAddForm('social-form')">+ Aggiungi Canale</button>
+    </div>
+    <div id="social-form" class="add-form">
+      <div class="form-title">➕ Aggiungi Canale Social</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nome Canale</label>
+          <input class="form-input" id="s-name" placeholder="es. @nomeprofilo">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Piattaforma</label>
+          <select class="form-select form-input" id="s-platform">
+            <option value="instagram">📸 Instagram</option>
+            <option value="youtube">▶️ YouTube</option>
+            <option value="facebook">👥 Facebook</option>
+            <option value="tiktok">🎵 TikTok</option>
+            <option value="linkedin">💼 LinkedIn</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">URL Profilo</label>
+          <input class="form-input" id="s-url" placeholder="https://...">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tipo Contenuto</label>
+          <input class="form-input" id="s-content" placeholder="es. Guide, News, Community...">
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label">Note Personali</label>
+          <textarea class="form-textarea" id="s-desc" placeholder="Perché lo segui? Cosa trovi utile?"></textarea>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" onclick="addSocial()">Aggiungi</button>
+        <button class="btn btn-ghost" onclick="toggleAddForm('social-form')">Annulla</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════ SEZIONE 3: SERVIZI ══════════ -->
+  <div id="section-servizi" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Sezione 3 · Valutazione Servizi</div>
+      <div class="section-title">Servizi <em>Professionali</em> & Costi</div>
+      <div class="section-desc">Tieni traccia di tutte le agenzie, studi legali e professionisti che stai valutando per partecipare alle aste. Inserisci i loro costi e confrontali.</div>
+    </div>
+
+    <!-- SUMMARY COSTI -->
+    <div class="cost-summary" id="cost-summary">
+      <div class="cost-box">
+        <div class="cost-box-label">Costo Totale Stimato</div>
+        <div class="cost-box-val" id="total-cost">€ 0</div>
+        <div class="cost-box-sub">Somma tutti i servizi</div>
+      </div>
+      <div class="cost-box">
+        <div class="cost-box-label">Servizi Inseriti</div>
+        <div class="cost-box-val" id="total-services">0</div>
+        <div class="cost-box-sub">Agenzie + Legali + Altro</div>
+      </div>
+      <div class="cost-box">
+        <div class="cost-box-label">In Valutazione</div>
+        <div class="cost-box-val" id="eval-services">0</div>
+        <div class="cost-box-sub">Da confermare</div>
       </div>
     </div>
 
-    <!-- ═══ SERVIZI ═══ -->
-    <div id="section-servizi" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Sezione 3 · Valutazione Personale</div>
-        <div class="section-title">Servizi <em>Professionali</em> & Costi</div>
-        <div class="section-desc">Agenzie, studi legali e professionisti che stai valutando. I tuoi dati sono privati e visibili solo a te.</div>
-      </div>
-      <div class="cost-summary">
-        <div class="cost-box"><div class="cost-box-label">Costo Totale Stimato</div><div class="cost-box-val" id="tot-cost">€ 0</div><div class="cost-box-sub">Somma di tutti i servizi</div></div>
-        <div class="cost-box"><div class="cost-box-label">Servizi Inseriti</div><div class="cost-box-val" id="tot-srv">0</div><div class="cost-box-sub">Agenzie + Legali + Altro</div></div>
-        <div class="cost-box"><div class="cost-box-label">In Valutazione</div><div class="cost-box-val" id="eval-srv">0</div><div class="cost-box-sub">Da confermare</div></div>
-      </div>
-      <div style="margin-bottom:16px;display:flex;gap:10px;align-items:center;">
-        <button class="btn" onclick="toggleForm('srv-form')">+ Aggiungi Servizio</button>
-        <span style="font-size:11.5px;color:var(--text-dim);">🔒 Dati privati, visibili solo a te</span>
-      </div>
-      <div id="srv-form" class="add-form">
-        <div class="form-title">➕ Aggiungi Servizio / Professionista</div>
-        <div class="fg">
-          <div class="fgi"><label class="fgi-l">Nome / Studio</label><input class="fi" id="sv-nm" placeholder="es. Studio Legale Rossi"></div>
-          <div class="fgi"><label class="fgi-l">Tipo</label><select class="fs" id="sv-tp"><option>🏢 Agenzia Specializzata Aste</option><option>👨‍⚖️ Studio Legale</option><option>🔍 Perito / Tecnico</option><option>💰 Consulente Finanziario</option><option>📋 Curatore Fallimentare</option><option>🏦 Mediatore Creditizio</option><option>📦 Altro</option></select></div>
-          <div class="fgi"><label class="fgi-l">Costo (€)</label><input class="fi" id="sv-cs" type="number" placeholder="es. 1500"></div>
-          <div class="fgi"><label class="fgi-l">Modalità Pagamento</label><select class="fs" id="sv-pm"><option>Fisso una tantum</option><option>% sul valore immobile</option><option>Mensile</option><option>A successo</option><option>Da definire</option></select></div>
-          <div class="fgi"><label class="fgi-l">Contatto / Sito</label><input class="fi" id="sv-ct" placeholder="email, tel o URL"></div>
-          <div class="fgi"><label class="fgi-l">Stato</label><select class="fs" id="sv-st"><option value="valutazione">🟡 In Valutazione</option><option value="contattato">🔵 Contattato</option><option value="confermato">🟢 Confermato</option><option value="scartato">🔴 Scartato</option></select></div>
-          <div class="fgi fg-full"><label class="fgi-l">Note / Servizi Offerti</label><textarea class="ft" id="sv-nt" placeholder="Pro e contro, condizioni, servizi specifici..."></textarea></div>
+    <!-- ADD SERVICE BUTTON -->
+    <div style="margin-bottom:16px;display:flex;gap:10px;align-items:center;">
+      <button class="btn" onclick="toggleAddForm('service-form')">+ Aggiungi Servizio</button>
+      <span style="font-size:12px;color:var(--text-dim);">Clicca su ogni riga per modificare</span>
+    </div>
+
+    <div id="service-form" class="add-form">
+      <div class="form-title">➕ Aggiungi Servizio / Professionista</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Nome / Studio</label>
+          <input class="form-input" id="sv-name" placeholder="es. Studio Legale Rossi">
         </div>
-        <div class="form-actions"><button class="btn" onclick="addSrv()">Aggiungi</button><button class="btn btn-ghost" onclick="toggleForm('srv-form')">Annulla</button></div>
+        <div class="form-group">
+          <label class="form-label">Tipo</label>
+          <select class="form-select form-input" id="sv-type">
+            <option>🏢 Agenzia Specializzata Aste</option>
+            <option>👨‍⚖️ Studio Legale</option>
+            <option>🔍 Perito / Tecnico</option>
+            <option>💰 Consulente Finanziario</option>
+            <option>📋 Curatore Fallimentare</option>
+            <option>🏦 Mediatore Creditizio</option>
+            <option>📦 Altro</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Costo (€)</label>
+          <input class="form-input" id="sv-cost" type="number" placeholder="es. 1500">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Modalità Pagamento</label>
+          <select class="form-select form-input" id="sv-payment">
+            <option>Fisso una tantum</option>
+            <option>% sul valore immobile</option>
+            <option>Mensile</option>
+            <option>A successo</option>
+            <option>Da definire</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contatto / Sito</label>
+          <input class="form-input" id="sv-contact" placeholder="email, tel o URL">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Stato</label>
+          <select class="form-select form-input" id="sv-status">
+            <option value="valutazione">🟡 In Valutazione</option>
+            <option value="contattato">🔵 Contattato</option>
+            <option value="confermato">🟢 Confermato</option>
+            <option value="scartato">🔴 Scartato</option>
+          </select>
+        </div>
+        <div class="form-group form-full">
+          <label class="form-label">Note / Servizi Offerti</label>
+          <textarea class="form-textarea" id="sv-notes" placeholder="Descrivi i servizi offerti, pro e contro, condizioni..."></textarea>
+        </div>
       </div>
-      <div class="tbl-wrap">
-        <table class="stbl">
-          <thead><tr><th>Nome / Studio</th><th>Tipo</th><th>Costo</th><th>Modalità</th><th>Contatto</th><th>Stato</th><th>Note</th><th></th></tr></thead>
-          <tbody id="srv-tbody">
-            <tr id="srv-empty"><td colspan="8"><div class="empty-state"><div class="empty-icon">💼</div><div class="empty-title">Nessun servizio ancora</div><div>Clicca "+ Aggiungi Servizio" per iniziare.</div></div></td></tr>
-          </tbody>
-        </table>
+      <div class="form-actions">
+        <button class="btn" onclick="addService()">Aggiungi</button>
+        <button class="btn btn-ghost" onclick="toggleAddForm('service-form')">Annulla</button>
       </div>
     </div>
 
-    <!-- ═══ ROADMAP ═══ -->
-    <div id="section-roadmap" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Sezione 4 · Piano d'Azione</div>
-        <div class="section-title">Roadmap & <em>Podcast Instagram</em></div>
-        <div class="section-desc">Piano su 12 mesi che integra la strategia aste con il lancio del podcast su Instagram. Clicca ogni fase per espandere e spuntare i task completati.</div>
-      </div>
-      <div class="tip"><span>🎙️</span>I task con il tag <strong style="color:#fd6d6d;">PODCAST</strong> sono specifici per la tua strategia Instagram.</div>
-      <div class="tl">
-        <div class="tl-item"><div class="tl-dot now">1</div>
-          <div class="tl-card exp" onclick="toggleTl(this)">
-            <div class="tl-month">Mese 1–2 · Fondamenta</div>
-            <div class="tl-title">Setup & Prima Esplorazione <span class="tl-chevron">▾</span></div>
-            <div class="tl-sub">Costruire la base: strumenti, conoscenze e primo contenuto.</div>
-            <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Registrarsi su PVP Giustizia e IVG Bologna</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Esplorare le prime 10 schede d'asta e studiarne la struttura</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Seguire almeno 5 canali social/YouTube specializzati</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Contattare 2–3 studi legali per un preventivo</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Creare profilo Instagram dedicato al progetto <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Definire posizionamento: target, tono, nome del podcast <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Registrare e pubblicare il primo episodio pilota (Reel o Live) <span class="pod-tag">🎙️ PODCAST</span></span></div>
-            </div></div>
-          </div>
-        </div>
-        <div class="tl-item"><div class="tl-dot">2</div>
-          <div class="tl-card" onclick="toggleTl(this)">
-            <div class="tl-month">Mese 3–4 · Prima Partecipazione</div>
-            <div class="tl-title">Prima Asta & Crescita Contenuti <span class="tl-chevron">▾</span></div>
-            <div class="tl-sub">Partecipare alla prima asta e costruire la community.</div>
-            <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Selezionare un immobile e analizzare perizia e documentazione</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Assistere (anche da osservatore) a una sessione d'asta telematica</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Preparare il piano finanziario per la prima offerta reale</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Scegliere e formalizzare accordo con il legale di fiducia</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Pubblicare 2 episodi/settimana: consigli pratici + case study <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Attivare Instagram Live mensile: Q&A sulle aste <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Raggiungere 500 follower e raccogliere feedback <span class="pod-tag">🎙️ PODCAST</span></span></div>
-            </div></div>
-          </div>
-        </div>
-        <div class="tl-item"><div class="tl-dot">3</div>
-          <div class="tl-card" onclick="toggleTl(this)">
-            <div class="tl-month">Mese 5–7 · Accelerazione</div>
-            <div class="tl-title">Prima Aggiudicazione & Autorità nel Settore <span class="tl-chevron">▾</span></div>
-            <div class="tl-sub">Tentare la prima vera offerta e diventare un riferimento.</div>
-            <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Presentare la prima offerta su un immobile selezionato</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Analizzare il risultato e documentare i learnings</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Costruire rete con altri partecipanti professionisti</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Invitare ospiti: avvocati, periti, agenti specializzati <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Lanciare serie: "Il mio percorso verso la prima casa all'asta" <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Collaborare con altri creator per crescita cross-platform <span class="pod-tag">🎙️ PODCAST</span></span></div>
-            </div></div>
-          </div>
-        </div>
-        <div class="tl-item"><div class="tl-dot">4</div>
-          <div class="tl-card" onclick="toggleTl(this)">
-            <div class="tl-month">Mese 8–10 · Consolidamento</div>
-            <div class="tl-title">Ottimizzazione & Monetizzazione Contenuti <span class="tl-chevron">▾</span></div>
-            <div class="tl-sub">Ottimizzare il processo d'acquisto e monetizzare il podcast.</div>
-            <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Partecipare ad almeno 3 aste con offerta presentata</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Valutare accordi con agenzie per sourcing immobili</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Analizzare ROI di ogni canale e ottimizzare</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Ampliare il podcast su Spotify/Apple (Anchor/Buzzsprout) <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Raggiungere 2.000 follower e valutare prime sponsorizzazioni <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Creare guida PDF gratuita da distribuire via newsletter <span class="pod-tag">🎙️ PODCAST</span></span></div>
-            </div></div>
-          </div>
-        </div>
-        <div class="tl-item"><div class="tl-dot">5</div>
-          <div class="tl-card" onclick="toggleTl(this)">
-            <div class="tl-month">Mese 11–12 · Ecosistema</div>
-            <div class="tl-title">Scalabilità & Posizionamento da Esperto <span class="tl-chevron">▾</span></div>
-            <div class="tl-sub">Diventare punto di riferimento nel settore aste in Italia.</div>
-            <div class="tl-body"><div class="tl-tasks">
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Definire strategia 2027: scale su più province</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Costruire rete stabile: legale, perito, agente di fiducia</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div>Valutare primo immobile aggiudicato: affitto o rivendita</div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Lanciare corso online o community a pagamento <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>Intervistare delegati alle vendite e professionisti Tribunale <span class="pod-tag">🎙️ PODCAST</span></span></div>
-              <div class="tl-task" onclick="chk(event,this)"><div class="tl-chk"></div><span>5.000+ follower: voce autorevole italiana sulle aste <span class="pod-tag">🎙️ PODCAST</span></span></div>
-            </div></div>
-          </div>
-        </div>
-      </div>
+    <!-- TABLE -->
+    <div class="services-table-wrap">
+      <table class="services-table" id="services-table">
+        <thead>
+          <tr>
+            <th>Nome / Studio</th>
+            <th>Tipo</th>
+            <th>Costo</th>
+            <th>Modalità</th>
+            <th>Contatto</th>
+            <th>Stato</th>
+            <th>Note</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="services-tbody">
+          <tr id="empty-services-row">
+            <td colspan="8">
+              <div class="empty-state">
+                <div class="empty-icon">💼</div>
+                <div class="empty-title">Nessun servizio ancora</div>
+                <div>Clicca "+ Aggiungi Servizio" per inserire il primo professionista che stai valutando.</div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ══════════ SEZIONE 4: ROADMAP ══════════ -->
+  <div id="section-roadmap" class="section">
+    <div class="section-header">
+      <div class="section-eyebrow">Sezione 4 · Piano d'Azione</div>
+      <div class="section-title">Roadmap & <em>Podcast Instagram</em></div>
+      <div class="section-desc">Il tuo piano su 12 mesi che integra la strategia per acquistare all'asta con il lancio e la crescita del tuo podcast su Instagram. Clicca su ogni fase per espandere e spuntare i task.</div>
     </div>
 
-    <!-- ═══ ADMIN ═══ -->
-    <div id="section-admin" class="section">
-      <div class="section-header">
-        <div class="section-eyebrow">Pannello di Controllo</div>
-        <div class="section-title"><em>Amministrazione</em> Hub</div>
-        <div class="section-desc">Gestisci utenti registrati, monitora le statistiche e modifica i contenuti globali dell'hub.</div>
-      </div>
-      <div class="admin-banner"><span style="font-size:18px;">🛡️</span><div><strong>Accesso Amministratore.</strong> Tutte le modifiche ai contenuti sono visibili a tutti gli utenti dell'hub.</div></div>
-      <div class="grid-3" style="margin-bottom:30px;">
-        <div class="cost-box"><div class="cost-box-label">Utenti Registrati</div><div class="cost-box-val" id="adm-ucnt">0</div><div class="cost-box-sub">Totale account</div></div>
-        <div class="cost-box"><div class="cost-box-label">Portali nel Hub</div><div class="cost-box-val" id="adm-pcnt">0</div><div class="cost-box-sub">Totale portali</div></div>
-        <div class="cost-box"><div class="cost-box-label">Canali Social</div><div class="cost-box-val" id="adm-scnt">0</div><div class="cost-box-sub">Totale canali</div></div>
-      </div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin-bottom:16px;">Gestione <em style="color:var(--gold)">Utenti</em></div>
-      <div style="margin-bottom:14px;"><button class="btn" onclick="toggleForm('adm-add-user')">+ Aggiungi Utente</button></div>
-      <div id="adm-add-user" class="add-form">
-        <div class="form-title">➕ Aggiungi Utente</div>
-        <div class="fg">
-          <div class="fgi"><label class="fgi-l">Nome</label><input class="fi" id="au-nm" placeholder="Mario Rossi"></div>
-          <div class="fgi"><label class="fgi-l">Email</label><input class="fi" id="au-em" type="email" placeholder="mario@email.it"></div>
-          <div class="fgi"><label class="fgi-l">Telefono</label><input class="fi" id="au-ph" placeholder="+39 333..."></div>
-          <div class="fgi"><label class="fgi-l">Password</label><input class="fi" id="au-pw" type="password" placeholder="password"></div>
-          <div class="fgi"><label class="fgi-l">Ruolo</label><select class="fs" id="au-rl"><option value="user">👤 Utente</option><option value="admin">🛡️ Amministratore</option></select></div>
-        </div>
-        <div class="form-actions"><button class="btn" onclick="admAddUser()">Aggiungi</button><button class="btn btn-ghost" onclick="toggleForm('adm-add-user')">Annulla</button></div>
-      </div>
-      <div style="overflow-x:auto;">
-        <table class="stbl" id="users-tbl"><thead><tr><th>Nome</th><th>Email</th><th>Telefono</th><th>Ruolo</th><th>Registrato</th><th>Azioni</th></tr></thead><tbody id="users-tbody"></tbody></table>
-      </div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:400;margin:32px 0 14px;">Gestione <em style="color:var(--gold)">Contenuti</em></div>
-      <div class="tip"><span>ℹ️</span>Per aggiungere o rimuovere portali e canali social, usa i pulsanti nelle rispettive sezioni (visibili solo da admin).</div>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn" onclick="showSection('portali',null)">⚖️ Vai a Portali</button>
-        <button class="btn" onclick="showSection('social',null)">📱 Vai a Social</button>
-      </div>
+    <div class="editable-tip">
+      <span>🎙️</span> I task con il tag <strong style="color:#fd6d6d;">PODCAST</strong> sono specifici per la tua strategia Instagram. Clicca ogni fase per vedere i dettagli.
     </div>
 
-  </div><!-- /main -->
-</div><!-- /app -->
-</div><!-- /app-screen -->
+    <div class="timeline">
+
+      <!-- FASE 1 -->
+      <div class="tl-item">
+        <div class="tl-dot active-now">1</div>
+        <div class="tl-card expanded" onclick="toggleTl(this)">
+          <div class="tl-month">Mese 1–2 · Fondamenta</div>
+          <div class="tl-title">Setup & Prima Esplorazione <span class="tl-title-icon">▾</span></div>
+          <div class="tl-subtitle">Costruire la base: strumenti, conoscenze e primo contenuto.</div>
+          <div class="tl-body">
+            <div class="tl-tasks">
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Registrarsi su PVP Giustizia e IVG Bologna</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Esplorare le prime 10 schede d'asta e studiarne la struttura</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Seguire almeno 5 canali social/YouTube specializzati</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Contattare 2–3 studi legali per un preventivo</div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Creare profilo Instagram dedicato al progetto <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Definire il posizionamento del podcast: a chi si rivolge, tono, nome <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Registrare e pubblicare il primo episodio pilota (Reel o Live) <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 2 -->
+      <div class="tl-item">
+        <div class="tl-dot">2</div>
+        <div class="tl-card" onclick="toggleTl(this)">
+          <div class="tl-month">Mese 3–4 · Prima Partecipazione</div>
+          <div class="tl-title">Prima Asta & Crescita Contenuti <span class="tl-title-icon">▾</span></div>
+          <div class="tl-subtitle">Partecipare alla prima asta (anche solo per osservare) e costruire la community.</div>
+          <div class="tl-body">
+            <div class="tl-tasks">
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Selezionare un immobile e analizzare perizia e documentazione</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Assistere (anche da osservatore) a una sessione d'asta telematica</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Preparare il piano finanziario per la prima offerta reale</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Scegliere e formalizzare accordo con il legale di fiducia</div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Pubblicare 2 episodi/settimana: consigli pratici + case study <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Attivare Instagram Live mensile: Q&A sulle aste <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Raggiungere 500 follower e iniziare a raccogliere feedback <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 3 -->
+      <div class="tl-item">
+        <div class="tl-dot">3</div>
+        <div class="tl-card" onclick="toggleTl(this)">
+          <div class="tl-month">Mese 5–7 · Accelerazione</div>
+          <div class="tl-title">Prima Aggiudicazione & Autorità nel Settore <span class="tl-title-icon">▾</span></div>
+          <div class="tl-subtitle">Tentare la prima vera offerta e diventare un riferimento sulla community.</div>
+          <div class="tl-body">
+            <div class="tl-tasks">
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Presentare la prima offerta su un immobile selezionato</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Analizzare il risultato (aggiudicato o meno) e documentare learnings</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Costruire rete con altri partecipanti professionisti alle aste</div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Invitare come ospiti avvocati, periti o agenti specializzati nel podcast <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Lanciare serie tematica: "Il mio percorso verso la prima casa all'asta" <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Collaborare con altri creator per crescita cross-platform <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 4 -->
+      <div class="tl-item">
+        <div class="tl-dot">4</div>
+        <div class="tl-card" onclick="toggleTl(this)">
+          <div class="tl-month">Mese 8–10 · Consolidamento</div>
+          <div class="tl-title">Ottimizzazione Strategia & Monetizzazione Contenuti <span class="tl-title-icon">▾</span></div>
+          <div class="tl-subtitle">Ottimizzare il processo d'acquisto e costruire un modello sostenibile per il podcast.</div>
+          <div class="tl-body">
+            <div class="tl-tasks">
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Partecipare ad almeno 3 aste con offerta presentata</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Valutare accordi con agenzie specializzate per sourcing immobili</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Analizzare ROI di ogni canale distributivo e ottimizzare</div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Ampliare il podcast su Spotify/Apple tramite Anchor o Buzzsprout <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Raggiungere 2.000 follower e valutare prime sponsorizzazioni <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Creare una guida PDF gratuita da distribuire via newsletter <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FASE 5 -->
+      <div class="tl-item">
+        <div class="tl-dot">5</div>
+        <div class="tl-card" onclick="toggleTl(this)">
+          <div class="tl-month">Mese 11–12 · Ecosistema</div>
+          <div class="tl-title">Scalabilità & Posizionamento da Esperto <span class="tl-title-icon">▾</span></div>
+          <div class="tl-subtitle">Diventare un punto di riferimento riconosciuto nel settore aste immobiliari in Italia.</div>
+          <div class="tl-body">
+            <div class="tl-tasks">
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Definire la strategia 2027: scalare a più province o tipologie d'immobile</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Costruire rete stabile: legale, perito, agente di fiducia</div>
+              <div class="tl-task" onclick="toggleTask(event,this)"><div class="tl-task-check"></div>Valutare primo immobile aggiudicato: ristrutturare, affittare o rivendere</div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Lanciare corso online o community a pagamento sulle aste <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>Intervistare delegati alle vendite e professionisti del Tribunale <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+              <div class="tl-task" onclick="toggleTask(event,this)">
+                <div class="tl-task-check"></div>
+                <span>5.000+ follower: posizionamento come voce autorevole italiana sulle aste <span class="tl-podcast-tag">🎙️ PODCAST</span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div><!-- end main -->
+</div><!-- end app -->
 
 <script>
-// ═══════════════════════════════════════
-//  DB helpers
-// ═══════════════════════════════════════
-const DB={
-  users(){ try{return JSON.parse(localStorage.getItem('hub_users')||'[]');}catch(e){return[];} },
-  saveUsers(u){ localStorage.setItem('hub_users',JSON.stringify(u)); },
-  portals(){ try{return JSON.parse(localStorage.getItem('hub_portals')||'null');}catch(e){return null;} },
-  savePortals(p){ localStorage.setItem('hub_portals',JSON.stringify(p)); },
-  socials(){ try{return JSON.parse(localStorage.getItem('hub_socials')||'null');}catch(e){return null;} },
-  saveSocials(s){ localStorage.setItem('hub_socials',JSON.stringify(s)); },
-  services(e){ try{return JSON.parse(localStorage.getItem('srv_'+e)||'[]');}catch(x){return[];} },
-  saveSrv(e,s){ localStorage.setItem('srv_'+e,JSON.stringify(s)); },
-  me(){ try{return JSON.parse(sessionStorage.getItem('hub_me')||'null');}catch(e){return null;} },
-  setMe(u){ sessionStorage.setItem('hub_me',JSON.stringify(u)); },
-  clearMe(){ sessionStorage.removeItem('hub_me'); }
-};
+// ── NAVIGATION ──
+function showSection(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  document.getElementById('section-' + name).classList.add('active');
+  event.currentTarget.classList.add('active');
+  document.querySelector('.topbar-title span').textContent =
+    {portali:'Portali & Siti Ufficiali',social:'Canali Social',servizi:'Servizi & Costi',roadmap:'Roadmap & Podcast'}[name];
+}
 
-// ═══════════════════════════════════════
-//  Default data
-// ═══════════════════════════════════════
-const DEF_PORTALS=[
-  {id:'pvp',icon:'🏛️',name:'PVP – Portale Vendite Pubbliche',desc:'Portale ufficiale del Ministero della Giustizia. Obbligatorio per tutte le vendite giudiziarie in Italia.',tags:['🇮🇹 Nazionale','Obbligatorio','Gratuito'],url:'https://pvp.giustizia.it',type:'ufficiale',prov:'nazionale'},
-  {id:'ivg',icon:'⚖️',name:'IVG – Istituto Vendite Giudiziarie',desc:'Rete degli IVG territoriali. IVG Bologna tra i più attivi, con aste telematiche per l\'Emilia-Romagna.',tags:['📍 Bologna','Telematiche'],url:'https://www.ivg.it',url2:'https://www.ivgbologna.it',url2l:'↗ IVG Bologna',type:'ufficiale',prov:'bologna'},
-  {id:'ago',icon:'🔨',name:'Aste Giudiziarie Online (AGO)',desc:'Piattaforma per aste telematiche delegate dai Tribunali. Copertura nazionale.',tags:['🇮🇹 Nazionale','Telematiche'],url:'https://www.astegiudiziarieonline.it',type:'ufficiale',prov:'nazionale'},
-  {id:'asteweb',icon:'🏦',name:'Asteweb',desc:'Portale delegato per aste telematiche. Convenzioni con numerosi Tribunali italiani.',tags:['🇮🇹 Nazionale','Tribunali'],url:'https://www.asteweb.com',type:'ufficiale',prov:'nazionale'},
-  {id:'fallco',icon:'📋',name:'Fallco Aste',desc:'Piattaforma per vendite da procedure concorsuali e fallimentari. Usata dai curatori.',tags:['🇮🇹 Nazionale','Fallimenti'],url:'https://www.fallcoaste.it',type:'ufficiale',prov:'nazionale'},
-  {id:'imm',icon:'🏡',name:'Immobiliare.it – Aste',desc:'Il portale immobiliare più visitato in Italia. Sezione aste con filtro per provincia, tipologia e prezzo.',tags:['🇮🇹 Nazionale','Filtro Provincia','Alta audience'],url:'https://www.immobiliare.it/aste/',type:'portale',prov:'nazionale'},
-  {id:'idealista',icon:'🔑',name:'Idealista.it – Aste',desc:'Forte presenza in Italia. Sezione aste con filtro per comune. Molto usato a Milano e Roma.',tags:['🇮🇹 Nazionale','Filtro Comune','Milano/Roma'],url:'https://www.idealista.it/aste-immobiliari/',type:'portale',prov:'nazionale'},
-  {id:'casait',icon:'🏘️',name:'Casa.it – Aste',desc:'Portale immobiliare con sezione aste. Ricerca per regione e provincia.',tags:['🇮🇹 Nazionale','Filtro Regione'],url:'https://www.casa.it',type:'portale',prov:'nazionale'},
-  {id:'gazzetta',icon:'🔍',name:'Gazzetta Aste',desc:'Portale specializzato in aste giudiziarie e volontarie. Alert email su nuove aste per zona.',tags:['🇮🇹 Nazionale','Specializzato','Alert Email'],url:'https://www.gazzettaaste.it',type:'portale',prov:'nazionale'},
-  {id:'uc',icon:'🏦',name:'UniCredit REO – Subito Casa',desc:'Portale UniCredit per immobili da procedure esecutive. Prezzi spesso sotto mercato.',tags:['UniCredit','Acquisto Diretto'],url:'https://www.unicredit.it/it/privati/mutui-e-prestiti/immobili-in-vendita.html',type:'banca',prov:'nazionale'},
-  {id:'intesa',icon:'🏛️',name:'Intesa Sanpaolo – Case in Vendita',desc:'Immobili da procedure esecutive Intesa Sanpaolo con finanziamento dedicato.',tags:['Intesa Sanpaolo','Finanziamento'],url:'https://www.intesasanpaolo.com',type:'banca',prov:'nazionale'},
-  {id:'doval',icon:'📊',name:'doValue – NPL Immobiliari',desc:'Uno dei principali servicer NPL in Italia. Gestisce portafogli immobiliari per banche e fondi.',tags:['NPL Servicer','B2B'],url:'https://www.dovalue.it',type:'banca',prov:'nazionale'}
-];
+function scrollToAnchor(id) {
+  const el = document.getElementById(id);
+  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
+}
 
-const DEF_SOCIALS=[
-  {id:'ig1',pl:'instagram',ic:'s-ig',em:'📸',nm:'Aste Immobiliari Italia',hd:'@asteimmobiliariitalia',ds:'Uno dei profili Instagram più seguiti. Pubblica guide, consigli e segnalazioni di aste.',url:'https://www.instagram.com/asteimmobiliariitalia'},
-  {id:'yt1',pl:'youtube',ic:'s-yt',em:'▶️',nm:'Aste Immobiliari – YouTube',hd:'Vari creator specializzati',ds:'Cerca "aste immobiliari Italia" per video-guide, analisi di casi reali e interviste a professionisti.',url:'https://www.youtube.com/results?search_query=aste+immobiliari+italia'},
-  {id:'fb1',pl:'facebook',ic:'s-fb',em:'👥',nm:'Gruppi FB – Aste Immobili',hd:'Gruppi pubblici e privati',ds:'Cerca "aste immobiliari [tua città]" per community attive con segnalazioni in tempo reale.',url:'https://www.facebook.com/groups/search/results/?q=aste%20immobiliari'},
-  {id:'tt1',pl:'tiktok',ic:'s-tt',em:'🎵',nm:'TikTok – #AsteImmobiliari',hd:'#asteimmobiliari #casaallasta',ds:'Contenuti brevi e virali. Hashtag #asteimmobiliari, #casaallasta, #investimentoimmobiliare.',url:'https://www.tiktok.com/search?q=aste+immobiliari'},
-  {id:'li1',pl:'linkedin',ic:'s-li',em:'💼',nm:'LinkedIn – NPL & Real Estate',hd:'Professionisti del settore',ds:'Segui professionisti NPL, servicer e avvocati specializzati in esecuzioni immobiliari.',url:'https://www.linkedin.com/search/results/all/?keywords=aste+immobiliari+italia'},
-  {id:'pod1',pl:'instagram',ic:'s-ig',em:'🎙️',nm:'Podcast & Newsletter Settore',hd:'Risorse audio e scritte',ds:'Podcast italiani su investimenti immobiliari e newsletter come NPL Review per aggiornamenti settimanali.',url:'https://www.spotify.com/search/aste%20immobiliari'}
-];
+// ── FORMS ──
+function toggleAddForm(id) {
+  const f = document.getElementById(id);
+  f.classList.toggle('open');
+}
 
-// ═══════════════════════════════════════
-//  Bootstrap admin
-// ═══════════════════════════════════════
-(function initAdmin(){
-  const u=DB.users();
-  if(!u.find(x=>x.email==='admin@astehub.it')){
-    u.push({id:'root',name:'Amministratore',email:'admin@astehub.it',phone:'+39 000 0000000',pwd:'Admin2025!',role:'admin',created:new Date().toLocaleDateString('it-IT')});
-    DB.saveUsers(u);
+// ── NOTES ──
+function toggleNote(btn) {
+  const card = btn.closest('.portal-card,.social-card');
+  const note = card.querySelector('.inline-note');
+  note.style.display = note.style.display === 'block' ? 'none' : 'block';
+}
+function saveNote(btn) {
+  const card = btn.closest('.portal-card,.social-card');
+  const textarea = card.querySelector('textarea');
+  const savedText = card.querySelector('.note-saved-text');
+  const key = 'note_' + Date.now();
+  if(textarea.value.trim()) {
+    localStorage.setItem('note_' + card.querySelector('.portal-name,.social-name')?.textContent, textarea.value);
+    savedText.style.display = 'block';
+    setTimeout(() => savedText.style.display = 'none', 2000);
   }
-})();
-
-// ═══════════════════════════════════════
-//  State
-// ═══════════════════════════════════════
-let CU=null, services=[];
-
-// ═══════════════════════════════════════
-//  Auth UI
-// ═══════════════════════════════════════
-function switchAuthTab(t){
-  document.querySelectorAll('.auth-tab').forEach((el,i)=>el.classList.toggle('active',i===(t==='login'?0:1)));
-  document.getElementById('auth-login').classList.toggle('active',t==='login');
-  document.getElementById('auth-register').classList.toggle('active',t==='register');
-}
-function showErr(id,msg){
-  const el=document.getElementById(id); el.textContent=msg; el.style.display='block';
-  el.style.animation=''; setTimeout(()=>el.style.animation='shake .4s ease',10);
-  setTimeout(()=>el.style.display='none',4500);
-}
-function doLogin(){
-  const email=document.getElementById('l-email').value.trim().toLowerCase();
-  const pwd=document.getElementById('l-pwd').value;
-  if(!email||!pwd)return showErr('login-error','Compila tutti i campi.');
-  const u=DB.users().find(x=>x.email===email&&x.pwd===pwd);
-  if(!u)return showErr('login-error','Email o password non corretti.');
-  CU=u; DB.setMe(u); launchApp(u);
-}
-function doRegister(){
-  const name=document.getElementById('r-name').value.trim();
-  const email=document.getElementById('r-email').value.trim().toLowerCase();
-  const phone=document.getElementById('r-phone').value.trim();
-  const pwd=document.getElementById('r-pwd').value;
-  const pwd2=document.getElementById('r-pwd2').value;
-  if(!name||!email||!phone||!pwd)return showErr('reg-error','Compila tutti i campi.');
-  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))return showErr('reg-error','Email non valida.');
-  if(pwd.length<6)return showErr('reg-error','Password minimo 6 caratteri.');
-  if(pwd!==pwd2)return showErr('reg-error','Le password non coincidono.');
-  const users=DB.users();
-  if(users.find(x=>x.email===email))return showErr('reg-error','Email già registrata.');
-  const nu={id:'u'+Date.now(),name,email,phone,pwd,role:'user',created:new Date().toLocaleDateString('it-IT')};
-  users.push(nu); DB.saveUsers(users);
-  const ok=document.getElementById('reg-success'); ok.textContent='✓ Account creato! Puoi ora accedere.'; ok.style.display='block';
-  setTimeout(()=>{ok.style.display='none';switchAuthTab('login');document.getElementById('l-email').value=email;},1800);
-}
-function doLogout(){
-  CU=null; services=[]; DB.clearMe();
-  document.getElementById('app-screen').style.display='none';
-  document.getElementById('auth-screen').style.display='flex';
-  document.getElementById('l-email').value='';
-  document.getElementById('l-pwd').value='';
 }
 
-// ═══════════════════════════════════════
-//  App launch
-// ═══════════════════════════════════════
-function launchApp(u){
-  document.getElementById('auth-screen').style.display='none';
-  document.getElementById('app-screen').style.display='block';
-  document.getElementById('u-nm').textContent=u.name;
-  document.getElementById('u-rl').textContent=u.role==='admin'?'🛡️ Amministratore':'👤 Membro';
-  document.getElementById('u-av').textContent=u.name.charAt(0).toUpperCase();
-  const isA=u.role==='admin';
-  document.getElementById('admin-nav-wrap').style.display=isA?'block':'none';
-  document.getElementById('add-portal-wrap').style.display=isA?'block':'none';
-  document.getElementById('add-social-wrap').style.display=isA?'block':'none';
-  document.getElementById('admin-portal-banner').style.display=isA?'flex':'none';
-  document.getElementById('admin-social-banner').style.display=isA?'flex':'none';
-  document.getElementById('main-app').classList.toggle('is-admin',isA);
-  services=DB.services(u.email);
-  renderPortals(); renderSocials(); renderSrv();
-  if(isA) updateAdminStats();
-  showSection('portali',document.querySelector('.nav-item'));
-}
-
-// ═══════════════════════════════════════
-//  Navigation
-// ═══════════════════════════════════════
-function showSection(name,navEl){
-  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
-  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
-  document.getElementById('section-'+name).classList.add('active');
-  if(navEl) navEl.classList.add('active');
-  const L={portali:'Portali & Siti Ufficiali',social:'Canali Social',servizi:'Servizi & Costi',roadmap:'Roadmap & Podcast Instagram',admin:'Pannello Amministratore'};
-  document.getElementById('topbar-name').textContent=L[name]||name;
-  if(name==='admin') updateAdminStats();
-}
-function scrollTo(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth',block:'start'}); }
-
-// ═══════════════════════════════════════
-//  Portals
-// ═══════════════════════════════════════
-function getPData(){ return DB.portals()||JSON.parse(JSON.stringify(DEF_PORTALS)); }
-const BADGE={ufficiale:'<span class="portal-badge badge-ufficiale">Ufficiale</span>',portale:'<span class="portal-badge badge-portale">Portale</span>',banca:'<span class="portal-badge badge-banca">Bancario</span>'};
-const GRIDS={ufficiale:'grid-ufficiali',portale:'grid-portale',banca:'grid-banca'};
-
-function renderPortals(){
-  ['grid-ufficiali','grid-portale','grid-banca'].forEach(g=>document.getElementById(g).innerHTML='');
-  const data=getPData(); const isA=CU&&CU.role==='admin';
-  data.forEach(p=>{
-    const tags=(p.tags||[]).map(t=>`<span class="meta-tag">${t}</span>`).join('');
-    const el=document.createElement('div');
-    el.className='portal-card'; el.dataset.type=p.type; el.dataset.prov=(p.prov||'nazionale'); el.dataset.pid=p.id;
-    el.innerHTML=`
-      <div class="portal-top"><span class="portal-icon">${p.icon||'🔗'}</span>${BADGE[p.type]||''}</div>
-      <div class="portal-name">${p.name}</div>
-      <div class="portal-desc">${p.desc}</div>
-      <div class="portal-meta">${tags}</div>
-      <div class="portal-actions">
-        <a class="portal-link" href="${p.url}" target="_blank">↗ Apri Sito</a>
-        ${p.url2?`<a class="portal-link" href="${p.url2}" target="_blank" style="background:transparent;border-color:var(--border);color:var(--text-mid);">${p.url2l||'↗'}</a>`:''}
-        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
-        ${isA?`<button class="portal-del-btn" onclick="delPortal('${p.id}')">✕</button>`:''}
-      </div>
-      <div class="inline-note">
-        <textarea placeholder="Aggiungi note...">${localStorage.getItem('pn_'+p.id+(CU?CU.email:''))||''}</textarea>
-        <button class="note-save-btn" onclick="saveNote(this,'${p.id}','p')">Salva nota</button>
-        <div class="note-saved-text">✓ Salvata</div>
-      </div>`;
-    const g=document.getElementById(GRIDS[p.type]||'grid-portale');
-    if(g) g.appendChild(el);
-  });
-}
-function delPortal(pid){
-  if(!confirm('Rimuovere questo portale per tutti gli utenti?')) return;
-  const data=getPData().filter(p=>p.id!==pid);
-  DB.savePortals(data); renderPortals(); updateAdminStats();
-}
-function addPortal(){
-  const nm=document.getElementById('p-nm').value.trim();
-  const url=document.getElementById('p-url').value.trim();
-  const type=document.getElementById('p-type').value;
-  const prov=document.getElementById('p-prov').value.trim().toLowerCase()||'nazionale';
-  const desc=document.getElementById('p-desc').value.trim();
-  if(!nm) return;
-  const icons={ufficiale:'⚖️',portale:'🏠',banca:'🏦'};
-  const data=getPData();
-  data.push({id:'p'+Date.now(),icon:icons[type]||'🔗',name:nm,desc,tags:['📍 '+prov],url,type,prov});
-  DB.savePortals(data); renderPortals(); updateAdminStats();
-  ['p-nm','p-url','p-prov','p-desc'].forEach(i=>document.getElementById(i).value='');
-  toggleForm('portal-form');
-}
-
-// ═══════════════════════════════════════
-//  Socials
-// ═══════════════════════════════════════
-function getSData(){ return DB.socials()||JSON.parse(JSON.stringify(DEF_SOCIALS)); }
-function renderSocials(){
-  const grid=document.getElementById('social-grid'); grid.innerHTML='';
-  const isA=CU&&CU.role==='admin';
-  getSData().forEach(s=>{
-    const el=document.createElement('div');
-    el.className='social-card'; el.dataset.platform=s.pl;
-    el.innerHTML=`
-      <div class="social-header">
-        <div class="social-platform-icon ${s.ic||''}">${s.em||'🔗'}</div>
-        <div><div class="social-name">${s.nm}</div><div class="social-handle">${s.hd||''}</div></div>
-      </div>
-      <div class="social-desc">${s.ds}</div>
-      <div class="portal-actions">
-        <a class="portal-link" href="${s.url}" target="_blank">↗ Vai al Canale</a>
-        <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
-        ${isA?`<button class="portal-del-btn" style="display:inline-flex" onclick="delSocial('${s.id}')">✕</button>`:''}
-      </div>
-      <div class="inline-note">
-        <textarea placeholder="Le tue note...">${localStorage.getItem('sn_'+s.id+(CU?CU.email:''))||''}</textarea>
-        <button class="note-save-btn" onclick="saveNote(this,'${s.id}','s')">Salva</button>
-        <div class="note-saved-text">✓ Salvata</div>
-      </div>`;
-    grid.appendChild(el);
-  });
-}
-function delSocial(id){
-  if(!confirm('Rimuovere questo canale?')) return;
-  DB.saveSocials(getSData().filter(s=>s.id!==id));
-  renderSocials(); updateAdminStats();
-}
-function addSocial(){
-  const nm=document.getElementById('s-nm').value.trim();
-  const pl=document.getElementById('s-pl').value;
-  const url=document.getElementById('s-url').value.trim();
-  const ct=document.getElementById('s-ct').value.trim();
-  const ds=document.getElementById('s-ds').value.trim();
-  if(!nm) return;
-  const IC={instagram:'s-ig',youtube:'s-yt',facebook:'s-fb',tiktok:'s-tt',linkedin:'s-li'};
-  const EM={instagram:'📸',youtube:'▶️',facebook:'👥',tiktok:'🎵',linkedin:'💼'};
-  const data=getSData();
-  data.push({id:'s'+Date.now(),pl,ic:IC[pl]||'',em:EM[pl]||'🔗',nm,hd:ct,ds,url});
-  DB.saveSocials(data); renderSocials(); updateAdminStats();
-  ['s-nm','s-url','s-ct','s-ds'].forEach(i=>document.getElementById(i).value='');
-  toggleForm('social-form');
-}
-
-// ═══════════════════════════════════════
-//  Notes
-// ═══════════════════════════════════════
-function toggleNote(btn){
-  const c=btn.closest('.portal-card,.social-card');
-  const n=c.querySelector('.inline-note');
-  n.style.display=n.style.display==='block'?'none':'block';
-}
-function saveNote(btn,id,type){
-  const c=btn.closest('.portal-card,.social-card');
-  const ta=c.querySelector('textarea');
-  const ok=c.querySelector('.note-saved-text');
-  localStorage.setItem((type==='s'?'sn_':'pn_')+id+(CU?CU.email:''),ta.value);
-  ok.style.display='block'; setTimeout(()=>ok.style.display='none',2000);
-}
-
-// ═══════════════════════════════════════
-//  Services
-// ═══════════════════════════════════════
-function addSrv(){
-  const nm=document.getElementById('sv-nm').value.trim();
-  const tp=document.getElementById('sv-tp').value;
-  const cs=parseFloat(document.getElementById('sv-cs').value)||0;
-  const pm=document.getElementById('sv-pm').value;
-  const ct=document.getElementById('sv-ct').value.trim();
-  const st=document.getElementById('sv-st').value;
-  const nt=document.getElementById('sv-nt').value.trim();
-  if(!nm) return;
-  services.push({id:Date.now(),nm,tp,cs,pm,ct,st,nt});
-  DB.saveSrv(CU.email,services); renderSrv();
-  ['sv-nm','sv-cs','sv-ct','sv-nt'].forEach(i=>document.getElementById(i).value='');
-  toggleForm('srv-form');
-}
-function renderSrv(){
-  const tb=document.getElementById('srv-tbody');
-  tb.querySelectorAll('tr.sr').forEach(r=>r.remove());
-  const em=document.getElementById('srv-empty');
-  if(!services.length){ em.style.display=''; updateSrvSummary(); return; }
-  em.style.display='none';
-  const SM={valutazione:'<span class="sdot sdot-y"></span>In Valutazione',contattato:'<span class="sdot" style="background:#4A7A9B"></span>Contattato',confermato:'<span class="sdot sdot-g"></span>Confermato',scartato:'<span class="sdot sdot-r"></span>Scartato'};
-  services.forEach(s=>{
-    const tr=document.createElement('tr'); tr.className='sr';
-    tr.innerHTML=`
-      <td><strong>${s.nm}</strong></td>
-      <td style="font-size:12px;color:var(--text-mid)">${s.tp}</td>
-      <td class="cost-cell">${s.cs>0?'€ '+s.cs.toLocaleString('it-IT'):'—'}</td>
-      <td style="font-size:12px;color:var(--text-mid)">${s.pm}</td>
-      <td style="font-size:12px">${s.ct?`<a href="${s.ct.startsWith('http')?s.ct:'mailto:'+s.ct}" target="_blank" style="color:var(--gold);text-decoration:none;">${s.ct}</a>`:'—'}</td>
-      <td style="font-size:12px;white-space:nowrap">${SM[s.st]||s.st}</td>
-      <td style="font-size:12px;color:var(--text-dim);max-width:170px;">${s.nt||'—'}</td>
-      <td><button class="del-btn" onclick="delSrv(${s.id})">✕</button></td>`;
-    tb.appendChild(tr);
-  });
-  updateSrvSummary();
-}
-function delSrv(id){
-  services=services.filter(x=>x.id!==id);
-  DB.saveSrv(CU.email,services); renderSrv();
-}
-function updateSrvSummary(){
-  const tot=services.reduce((a,b)=>a+(b.cs||0),0);
-  const ev=services.filter(s=>s.st==='valutazione').length;
-  document.getElementById('tot-cost').textContent='€ '+tot.toLocaleString('it-IT');
-  document.getElementById('tot-srv').textContent=services.length;
-  document.getElementById('eval-srv').textContent=ev;
-}
-
-// ═══════════════════════════════════════
-//  Filters
-// ═══════════════════════════════════════
-function filterP(type,el){
-  document.querySelectorAll('#type-filters .filter-chip').forEach(c=>c.classList.remove('active'));
+// ── FILTERS ──
+function filterPortals(type, el) {
+  document.querySelectorAll('#type-filters .filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  document.querySelectorAll('.portal-card').forEach(c=>c.style.display=(type==='all'||c.dataset.type===type)?'':'none');
-}
-function filterProv(){
-  const v=document.getElementById('prov-filter').value;
-  document.querySelectorAll('.portal-card').forEach(c=>{
-    const p=c.dataset.prov||'';
-    c.style.display=(v==='all'||p==='nazionale'||p===v)?'':'none';
+  document.querySelectorAll('.portal-card').forEach(c => {
+    c.style.display = (type === 'all' || c.dataset.type === type) ? '' : 'none';
   });
 }
-function filterS(pl,el){
-  document.querySelectorAll('#social-filters .filter-chip').forEach(c=>c.classList.remove('active'));
+
+function filterByProvince() {
+  const val = document.getElementById('province-filter').value;
+  document.querySelectorAll('.portal-card').forEach(c => {
+    const prov = c.dataset.province || '';
+    c.style.display = (val === 'all' || prov === 'nazionale' || prov === val) ? '' : 'none';
+  });
+}
+
+function filterSocial(platform, el) {
+  document.querySelectorAll('#social-filters .filter-chip').forEach(c => c.classList.remove('active'));
   el.classList.add('active');
-  document.querySelectorAll('#social-grid .social-card').forEach(c=>c.style.display=(pl==='all'||c.dataset.platform===pl)?'':'none');
-}
-
-// ═══════════════════════════════════════
-//  Admin
-// ═══════════════════════════════════════
-function updateAdminStats(){
-  const u=DB.users(); const p=getPData(); const s=getSData();
-  document.getElementById('adm-ucnt').textContent=u.length;
-  document.getElementById('adm-pcnt').textContent=p.length;
-  document.getElementById('adm-scnt').textContent=s.length;
-  renderUsersTable();
-}
-function renderUsersTable(){
-  const tb=document.getElementById('users-tbody'); tb.innerHTML='';
-  DB.users().forEach(u=>{
-    const tr=document.createElement('tr');
-    tr.innerHTML=`
-      <td><strong>${u.name}</strong></td>
-      <td style="font-size:12px">${u.email}</td>
-      <td style="font-size:12px;color:var(--text-mid)">${u.phone||'—'}</td>
-      <td><span class="role-badge ${u.role==='admin'?'role-admin':'role-user'}">${u.role==='admin'?'🛡️ Admin':'👤 Utente'}</span></td>
-      <td style="font-size:12px;color:var(--text-dim)">${u.created||'—'}</td>
-      <td style="display:flex;gap:6px;flex-wrap:wrap;">
-        ${u.email!=='admin@astehub.it'?`
-          <button class="edit-btn" onclick="toggleRole('${u.id}')">${u.role==='admin'?'→ Utente':'→ Admin'}</button>
-          <button class="del-btn" onclick="delUser('${u.id}')">✕</button>
-        `:'<span style="font-size:11px;color:var(--text-dim)">Account Root</span>'}
-      </td>`;
-    tb.appendChild(tr);
+  document.querySelectorAll('#social-grid .social-card').forEach(c => {
+    c.style.display = (platform === 'all' || c.dataset.platform === platform) ? '' : 'none';
   });
 }
-function toggleRole(uid){
-  const users=DB.users(); const u=users.find(x=>x.id===uid);
-  if(u){ u.role=u.role==='admin'?'user':'admin'; DB.saveUsers(users); renderUsersTable(); }
-}
-function delUser(uid){
-  if(!confirm('Eliminare questo utente definitivamente?')) return;
-  DB.saveUsers(DB.users().filter(u=>u.id!==uid));
-  updateAdminStats();
-}
-function admAddUser(){
-  const nm=document.getElementById('au-nm').value.trim();
-  const em=document.getElementById('au-em').value.trim().toLowerCase();
-  const ph=document.getElementById('au-ph').value.trim();
-  const pw=document.getElementById('au-pw').value;
-  const rl=document.getElementById('au-rl').value;
-  if(!nm||!em||!pw) return alert('Compila nome, email e password.');
-  const users=DB.users();
-  if(users.find(u=>u.email===em)) return alert('Email già esistente.');
-  users.push({id:'u'+Date.now(),name:nm,email:em,phone:ph,pwd:pw,role:rl,created:new Date().toLocaleDateString('it-IT')});
-  DB.saveUsers(users); updateAdminStats();
-  ['au-nm','au-em','au-ph','au-pw'].forEach(i=>document.getElementById(i).value='');
-  toggleForm('adm-add-user');
+
+// ── ADD PORTAL ──
+function addPortal() {
+  const name = document.getElementById('p-name').value.trim();
+  const url = document.getElementById('p-url').value.trim();
+  const type = document.getElementById('p-type').value;
+  const province = document.getElementById('p-province').value.trim() || 'nazionale';
+  const desc = document.getElementById('p-desc').value.trim();
+  if(!name) return;
+  const badges = {ufficiale:'<span class="portal-badge badge-ufficiale">Ufficiale</span>',portale:'<span class="portal-badge badge-portale">Portale</span>',banca:'<span class="portal-badge badge-banca">Bancario</span>'};
+  const icons = {ufficiale:'⚖️',portale:'🏠',banca:'🏦'};
+  const card = document.createElement('div');
+  card.className = 'portal-card';
+  card.dataset.type = type;
+  card.dataset.province = province.toLowerCase();
+  card.innerHTML = `
+    <div class="portal-top"><span class="portal-icon">${icons[type]||'🔗'}</span>${badges[type]||''}</div>
+    <div class="portal-name">${name}</div>
+    <div class="portal-desc">${desc}</div>
+    <div class="portal-meta"><span class="meta-tag">📍 ${province}</span></div>
+    <div class="portal-actions">
+      ${url ? `<a class="portal-link" href="${url}" target="_blank">↗ Apri Sito</a>` : ''}
+      <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+    </div>
+    <div class="inline-note">
+      <textarea placeholder="Aggiungi le tue note..."></textarea>
+      <button class="note-save-btn" onclick="saveNote(this)">Salva nota</button>
+      <div class="note-saved-text">✓ Salvata</div>
+    </div>`;
+  const grids = {ufficiale:'portal-grid-ufficiali',portale:'portal-grid-gen',banca:'portal-grid-bancari'};
+  document.getElementById(grids[type]||'portal-grid-gen').appendChild(card);
+  ['p-name','p-url','p-province','p-desc'].forEach(id => document.getElementById(id).value='');
+  toggleAddForm('portal-form');
 }
 
-// ═══════════════════════════════════════
-//  Roadmap
-// ═══════════════════════════════════════
-function toggleTl(c){ c.classList.toggle('exp'); }
-function chk(e,el){
+// ── ADD SOCIAL ──
+function addSocial() {
+  const name = document.getElementById('s-name').value.trim();
+  const platform = document.getElementById('s-platform').value;
+  const url = document.getElementById('s-url').value.trim();
+  const content = document.getElementById('s-content').value.trim();
+  const desc = document.getElementById('s-desc').value.trim();
+  if(!name) return;
+  const icons = {instagram:'s-ig',youtube:'s-yt',facebook:'s-fb',tiktok:'s-tt',linkedin:'s-li'};
+  const emojis = {instagram:'📸',youtube:'▶️',facebook:'👥',tiktok:'🎵',linkedin:'💼'};
+  const card = document.createElement('div');
+  card.className = 'social-card';
+  card.dataset.platform = platform;
+  card.innerHTML = `
+    <div class="social-header">
+      <div class="social-platform-icon ${icons[platform]||''}">${emojis[platform]||'🔗'}</div>
+      <div><div class="social-name">${name}</div><div class="social-handle">${content}</div></div>
+    </div>
+    <div class="social-desc">${desc}</div>
+    <div class="portal-actions">
+      ${url ? `<a class="portal-link" href="${url}" target="_blank">↗ Vai al Canale</a>` : ''}
+      <span class="portal-link-note" onclick="toggleNote(this)">✏️ Note</span>
+    </div>
+    <div class="inline-note">
+      <textarea placeholder="Le tue note..."></textarea>
+      <button class="note-save-btn" onclick="saveNote(this)">Salva</button>
+      <div class="note-saved-text">✓ Salvata</div>
+    </div>`;
+  document.getElementById('social-grid').appendChild(card);
+  ['s-name','s-url','s-content','s-desc'].forEach(id => document.getElementById(id).value='');
+  toggleAddForm('social-form');
+}
+
+// ── SERVICES ──
+let services = [];
+function addService() {
+  const name = document.getElementById('sv-name').value.trim();
+  const type = document.getElementById('sv-type').value;
+  const cost = parseFloat(document.getElementById('sv-cost').value) || 0;
+  const payment = document.getElementById('sv-payment').value;
+  const contact = document.getElementById('sv-contact').value.trim();
+  const status = document.getElementById('sv-status').value;
+  const notes = document.getElementById('sv-notes').value.trim();
+  if(!name) return;
+  const id = Date.now();
+  services.push({id,name,type,cost,payment,contact,status,notes});
+  renderServices();
+  ['sv-name','sv-cost','sv-contact','sv-notes'].forEach(i => document.getElementById(i).value='');
+  toggleAddForm('service-form');
+}
+
+function renderServices() {
+  const tbody = document.getElementById('services-tbody');
+  const emptyRow = document.getElementById('empty-services-row');
+  if(services.length === 0) {
+    emptyRow.style.display = '';
+    updateCostSummary();
+    return;
+  }
+  emptyRow.style.display = 'none';
+  const existingRows = tbody.querySelectorAll('tr.service-row');
+  existingRows.forEach(r => r.remove());
+  services.forEach(sv => {
+    const statusMap = {valutazione:'<span class="status-dot dot-yellow"></span>In Valutazione',contattato:'<span class="status-dot" style="background:#4A7A9B"></span>Contattato',confermato:'<span class="status-dot dot-green"></span>Confermato',scartato:'<span class="status-dot dot-red"></span>Scartato'};
+    const tr = document.createElement('tr');
+    tr.className = 'service-row';
+    tr.innerHTML = `
+      <td><strong>${sv.name}</strong></td>
+      <td style="font-size:12px;color:var(--text-mid)">${sv.type}</td>
+      <td class="cost-cell">${sv.cost > 0 ? '€ '+sv.cost.toLocaleString('it-IT') : '—'}</td>
+      <td style="font-size:12px;color:var(--text-mid)">${sv.payment}</td>
+      <td style="font-size:12px">${sv.contact ? `<a href="${sv.contact.startsWith('http') ? sv.contact : 'mailto:'+sv.contact}" target="_blank" style="color:var(--gold);text-decoration:none;">${sv.contact}</a>` : '—'}</td>
+      <td style="font-size:12px;white-space:nowrap">${statusMap[sv.status]||sv.status}</td>
+      <td style="font-size:12px;color:var(--text-dim);max-width:180px;">${sv.notes||'—'}</td>
+      <td><button class="del-btn" onclick="deleteService(${sv.id})">✕</button></td>`;
+    tbody.appendChild(tr);
+  });
+  updateCostSummary();
+}
+
+function deleteService(id) {
+  services = services.filter(s => s.id !== id);
+  renderServices();
+}
+
+function updateCostSummary() {
+  const total = services.reduce((a,b) => a + (b.cost||0), 0);
+  const inEval = services.filter(s => s.status === 'valutazione').length;
+  document.getElementById('total-cost').textContent = '€ '+total.toLocaleString('it-IT');
+  document.getElementById('total-services').textContent = services.length;
+  document.getElementById('eval-services').textContent = inEval;
+}
+
+// ── TIMELINE ──
+function toggleTl(card) {
+  card.classList.toggle('expanded');
+}
+function toggleTask(e, el) {
   e.stopPropagation();
-  el.classList.toggle('chkd');
-  el.querySelector('.tl-chk').textContent=el.classList.contains('chkd')?'✓':'';
+  el.classList.toggle('checked');
+  const check = el.querySelector('.tl-task-check');
+  check.textContent = el.classList.contains('checked') ? '✓' : '';
 }
 
-// ═══════════════════════════════════════
-//  Utils
-// ═══════════════════════════════════════
-function toggleForm(id){ document.getElementById(id).classList.toggle('open'); }
-function exportNotes(){
-  let out='# Hub Aste Immobiliari – Note\n\n';
-  document.querySelectorAll('.portal-card,.social-card').forEach(c=>{
-    const nm=c.querySelector('.portal-name,.social-name')?.textContent;
-    const nt=c.querySelector('textarea')?.value;
-    if(nm&&nt&&nt.trim()) out+=`## ${nm}\n${nt}\n\n`;
+// ── EXPORT ──
+function exportNotes() {
+  let out = '# Hub Aste Immobiliari – Note Personali\n\n';
+  document.querySelectorAll('.portal-card, .social-card').forEach(card => {
+    const name = card.querySelector('.portal-name,.social-name')?.textContent;
+    const note = card.querySelector('textarea')?.value;
+    if(name && note && note.trim()) {
+      out += `## ${name}\n${note}\n\n`;
+    }
   });
-  if(services.length){ out+='## Servizi\n'; services.forEach(s=>out+=`- **${s.nm}** (${s.tp}): €${s.cs} – ${s.st}\n  ${s.nt}\n`); }
-  const a=document.createElement('a');
-  a.href=URL.createObjectURL(new Blob([out],{type:'text/plain'}));
-  a.download='aste-hub-note.txt'; a.click();
-}
-
-// ═══════════════════════════════════════
-//  Auto-login on reload
-// ═══════════════════════════════════════
-window.addEventListener('DOMContentLoaded',()=>{
-  const saved=DB.me();
-  if(saved){
-    const fresh=DB.users().find(u=>u.email===saved.email&&u.pwd===saved.pwd);
-    if(fresh){ CU=fresh; launchApp(fresh); }
+  if(services.length) {
+    out += '## Servizi Valutati\n';
+    services.forEach(s => out += `- **${s.name}** (${s.type}): €${s.cost} – ${s.status}\n  ${s.notes}\n`);
   }
-});
+  const blob = new Blob([out], {type:'text/plain'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'aste-hub-note.txt';
+  a.click();
+}
 </script>
 </body>
 </html>
